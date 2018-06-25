@@ -506,11 +506,11 @@ svg {
   height: 95%;
   background: #5cb85c !important;
 }
-.skill-info {
+.skill-graded-info {
   margin-left: 15px;
 }
 @media (max-width: 480px) {
-  .skill-info {
+  .skill-graded-info {
     margin-left: 20px;
   }
 }

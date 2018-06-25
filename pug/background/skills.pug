@@ -10,10 +10,12 @@ unless _.isEmpty(resume.skills)
             li.card.card-nested.card-skills
               if skill.display_progress_bar
                 .skill-level(data-toggle="tooltip", title=skill.level, data-placement="left")
-                  .skill-progress(class=skill.skill_class)
+                  .skill-progress(class=skill.class)
 
-              .skill-info
+              div(class = skill.display_progress_bar && "skill-graded-info" || "")
                 strong= skill.name
+                if skill.subtitle
+                  |&nbsp;(#{skill.subtitle})
 
                 unless _.isEmpty(skill.keywords)
                   .space-top.labels

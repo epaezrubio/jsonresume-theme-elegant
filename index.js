@@ -112,8 +112,12 @@ function render(resume) {
     _.each(resume.skills, function(skill_info) {
         var levels = ['Beginner', 'Intermediate', 'Advanced', 'Master'];
 
+        if (skill_info.type) {
+          skill_info.subtitle = skill_info.type.toLowerCase();
+        }
+
         if (skill_info.level) {
-            skill_info.skill_class = skill_info.level.toLowerCase();
+            skill_info.class = skill_info.level.toLowerCase();
             skill_info.level = capitalize(skill_info.level.trim());
             skill_info.display_progress_bar = _.contains(levels, skill_info.level);
         }

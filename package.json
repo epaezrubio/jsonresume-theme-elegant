@@ -1,6 +1,6 @@
 {
   "name": "jsonresume-theme-elegant-jali",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Modification of elegant theme for jsonresume",
   "main": "index.js",
   "scripts": {
