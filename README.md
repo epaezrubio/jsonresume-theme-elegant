@@ -2,7 +2,7 @@
 
 Personal modification of the [Elegant](https://github.com/mudassir0909/jsonresume-theme-elegant) responsive theme for [JsonResume](https://jsonresume.org/) by Mudassir Ali.
 
-[Theme Preview](fake for now boya)
+[Theme Preview](http://themes.jsonresume.org/elegant-jali)
 
 ## Modifications
 * Added responsive sidebars to work experience.
