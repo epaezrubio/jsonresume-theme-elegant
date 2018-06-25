@@ -1,35 +1,26 @@
+.printing {
+  display: none;
+}
+
 @media print {
     a[href]:after {
         content: none !important;
     }
 
-    .profile-card {
-        text-align: center;
-    }
-
-    .profile-pic {
-        display: inline-block;
-        vertical-align: middle;
-        img {
-            border-radius: 0;
-        }
-    }
-
-    .name-and-profession {
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: 15px;
-    }
-
-    .contact-details {
-        .detail {
-            .make-xs-column(3);
-            padding: 0;
-        }
+    .printing {
+      display: inherit;
     }
 
     .floating-nav, .floating-nav-trigger {
         display: none;
+    }
+
+    .social-link .icon {
+      font-size: 1.33333333em;
+    }
+
+    .text-muted, .text-muted * {
+      color: @gray-light !important;
     }
 
     .pagebreak {

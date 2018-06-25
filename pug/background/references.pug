@@ -1,9 +1,6 @@
 unless _.isEmpty(resume.references)
   .detail#references
-    .icon
-      i.fs-lg.icon-thumbs-up
-      span.mobile-title References
-
+    +large_icon('thumbs-up', 'References')
     .info
       h4.title.text-uppercase References
 

@@ -1,11 +1,11 @@
-@import "variables";
-@import "mixins";
-@import "icon";
-
 body {
     font-family: 'Lato';
     background: @theme-bg;
     color: @theme-font-color;
+}
+
+svg {
+  pointer-events: none;
 }
 
 .main {
@@ -31,7 +31,7 @@ body {
 }
 
 .background-card {
-    padding: 10px 20px;
+    padding: 20px 20px 10px 20px;
 }
 
 .card-wrapper {
@@ -56,8 +56,8 @@ body {
             width: 100%;
         }
 
-        .title, .icon {
-            color: @icon-color;
+        .title, .icon * {
+            color: @icon-color !important;
         }
 
         .mobile-title {
@@ -99,15 +99,21 @@ body {
 
 .info {
     .content.has-sidebar {
-        width: 80%;
         box-sizing: border-box;
-        float: left;
-        padding: 0 10px;
+        padding-right: 20px;
         border-right: 1px solid darken(@card-border-color, 10%);
+        flex: 80%;
+
+        small {
+          display: none;
+        }
 
         @media (max-width: @screen-desktop) {
-            width: 100%;
             border-right: 0;
+
+            small {
+              display: block;
+            }
         }
         @media (max-width: @screen-phone) {
             padding: 0 2px;
@@ -115,9 +121,14 @@ body {
     }
 
     .sidebar {
-        margin-left: 80%;
+        flex: 20%;
         box-sizing: border-box;
         padding: 10px;
+        white-space:nowrap;
+
+        @media (max-width: @screen-desktop) {
+            display: none;
+        }
     }
 }
 
@@ -129,11 +140,11 @@ ul {
 
 .current-event {
     font-size: 8px;
-    color: #5ACE24;
+    color: #5ACE24 !important;
     position: absolute;
     right: 100%;
-    top: 4px;
-    left: -10px;
+    top: 6px;
+    left: -12px;
 }
 
 .mop-wrapper { //mardown output wrapper

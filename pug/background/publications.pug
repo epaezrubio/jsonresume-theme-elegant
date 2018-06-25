@@ -1,10 +1,7 @@
 
 unless _.isEmpty(resume.publications)
   .detail#publications
-    .icon
-      i.fs-lg.icon-newspaper
-      span.mobile-title Publications
-
+    +large_icon('newspaper', 'Publications')
     .info
       h4.title.text-uppercase Publications
 

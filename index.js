@@ -40,13 +40,13 @@ function getFloatingNavItems(resume) {
     var floating_nav_items = [
         {label: 'About', target: 'about', icon: 'board', requires: 'basics.summary'},
         {label: 'Work Experience', target: 'work-experience', icon: 'office', requires: 'work'},
-        {label: 'Skills', target: 'skills', icon: 'tools', requires: 'skills'},
-        {label: 'Education', target: 'education', icon: 'graduation-cap', requires: 'education'},
-        {label: 'Awards', target: 'awards', icon: 'trophy', requires: 'awards'},
         {label: 'Volunteer Work', target: 'volunteer-work', icon: 'child', requires: 'volunteer'},
         {label: 'Publications', target: 'publications', icon: 'newspaper', requires: 'publications'},
-        {label: 'Interests', target: 'interests', icon: 'heart', requires: 'interests'},
-        {label: 'References', target: 'references', icon: 'thumbs-up', requires: 'references'}
+        {label: 'Awards', target: 'awards', icon: 'trophy', requires: 'awards'},
+        {label: 'Education', target: 'education', icon: 'graduation-cap', requires: 'education'},
+        {label: 'References', target: 'references', icon: 'thumbs-up', requires: 'references'},
+        {label: 'Skills', target: 'skills', icon: 'tools', requires: 'skills'},
+        {label: 'Interests', target: 'interests', icon: 'heart', requires: 'interests'}
     ];
 
     return _(floating_nav_items).filter(function(item) {

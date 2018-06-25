@@ -1,9 +1,6 @@
 unless _.isEmpty(resume.awards)
   .detail#awards
-    .icon
-      i.fs-lg.icon-trophy
-      span.mobile-title Awards
-
+    +large_icon('trophy', 'Awards')
     .info
       h4.title.text-uppercase Awards
 

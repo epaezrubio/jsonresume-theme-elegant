@@ -1,9 +1,6 @@
 unless _.isEmpty(resume.education)
   .detail#education
-    .icon
-      i.fs-lg.icon-graduation-cap
-      span.mobile-title Education
-
+    +large_icon('graduation-cap', 'Education')
     .info
       h4.title.text-uppercase Education
 
@@ -13,15 +10,7 @@ unless _.isEmpty(resume.education)
             li.card.card-nested
               .content
                 p.clear-margin.relative
-                  if !education_info.endDate
-                    i.icon-circle.current-event(
-                      rel="tooltip",
-                      title="Currently Pursuing",
-                      data-placement="left"
-                    )
-
-                  strong
-                    |#{education_info.area}, #{education_info.studyType},&nbsp;
+                  +timed_event_title(education_info.area + ', ' + education_info.studyType + ', ', !education_info.endDate, 'Currently Pursuing')
                   |#{education_info.institution}
 
                 p.text-muted(class=!education_info.gpa && _.isEmpty(education_info.courses) ? 'clear-margin' : '')

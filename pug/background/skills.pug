@@ -1,9 +1,6 @@
 unless _.isEmpty(resume.skills)
   .detail#skills
-    .icon
-      i.fs-lg.icon-tools
-      span.mobile-title Skills
-
+    +large_icon('tools', 'Skills')
     .info
       h4.title.text-uppercase Skills
 

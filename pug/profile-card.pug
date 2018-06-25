@@ -1,7 +1,8 @@
 mixin profile_card_detail(icon, info, itemprop, icon_title)
   .detail
     span.icon(title=icon_title)
-      i.icon.fs-lg(class=icon)
+      svg.fs-lg(class="icon-" + icon)
+        use(xlink:href="#icon-" + icon)
     span.info(itemprop=itemprop)
       if block
         block
@@ -10,15 +11,10 @@ mixin profile_card_detail(icon, info, itemprop, icon_title)
 
 mixin render_links(profiles)
   each profile in profiles
-    a.fs-2x.social-link(
-      href=profile.url,
-      target="_blank",
-      data-toggle="tooltip",
-      title= resume.basics.name + " on " + profile.network,
-      class="link-" + profile.label + " icon-" + profile.label)
-      if profile.network.toLowerCase() == 'meetup'
-        span.path2
-        span.path3
+    a.social-link(title=resume.basics.name + " on " + profile.network, href=profile.url, target="_blank", data-toggle="tooltip")
+      svg.icon(class="icon-" + profile.label, title='')
+        use(xlink:href="#icon-" + profile.label)
+      span.info.printing=profile.url
 
 section.col-md-3.card-wrapper.profile-card-wrapper.affix
   .card.profile-card
@@ -38,17 +34,17 @@ section.col-md-3.card-wrapper.profile-card-wrapper.affix
 
     .contact-details.clearfix
       if resume.basics.computed_location
-        +profile_card_detail("icon-location", resume.basics.computed_location)
+        +profile_card_detail("location", resume.basics.computed_location)
       if resume.basics.phone
-        +profile_card_detail("icon-phone", resume.basics.phone, "telephone")
+        +profile_card_detail("phone", resume.basics.phone, "telephone")
       if resume.basics.email
-        +profile_card_detail("icon-mail")
+        +profile_card_detail("mail")
           a.link-disguise(href="mailto:" + resume.basics.email, itemprop="email")= resume.basics.email
       if resume.basics.website
-        +profile_card_detail("icon-link")
+        +profile_card_detail("link")
           a(href=resume.basics.website, target="_blank")= resume.basics.website
       if resume.basics.languages
-        +profile_card_detail('icon-language', resume.basics.languages, null, 'Languages I speak')
+        +profile_card_detail('language', resume.basics.languages, null, 'Languages I speak')
 
     hr
 
@@ -60,7 +56,8 @@ section.col-md-3.card-wrapper.profile-card-wrapper.affix
           button.btn.btn-default.btn-sm.btn-circle-sm.pull-right.js-profiles-collapse(
             data-toggle="collapse",
             data-target="#remaining-profiles")
-            i.icon-chevron-down.fs-lg
+            svg.fs-lg(class="icon-chevron-down")
+              use(xlink:href="#icon-chevron-down")
 
           #remaining-profiles.collapse.text-left
             +render_links(resume.basics.remaining_profiles)

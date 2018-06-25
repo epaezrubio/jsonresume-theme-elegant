@@ -1,213 +1,47 @@
-@font-face {
-  font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?9yug7q');
-  src:  url('fonts/icomoon.eot?9yug7q#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?9yug7q') format('truetype'),
-    url('fonts/icomoon.woff?9yug7q') format('woff'),
-    url('fonts/icomoon.svg?9yug7q#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
 }
-
-[class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ==========================================
+Single-colored icons can be modified like so:
+.icon-name {
+  font-size: 32px;
+  color: red;
 }
-
-.icon-instagram:before {
-  content: "\e905";
+========================================== */
+.icon-curse {
+  width: 0.6767578125em;
 }
-.icon-trophy:before {
-  content: "\e605";
+.icon-book {
+  width: 0.9287109375em;
 }
-.icon-office:before {
-  content: "\e606";
+.icon-link {
+  width: 0.9287109375em;
 }
-.icon-clock:before {
-  content: "\e60a";
+.icon-bars {
+  width: 0.857421875em;
 }
-.icon-reddit:before {
-  content: "\e609";
+.icon-circle {
+  width: 0.857421875em;
 }
-.icon-telegram:before {
-  content: "\e904";
+.icon-graduation-cap {
+  width: 1.2861328125em;
 }
-.icon-flickr:before {
-  content: "\f16e";
+.icon-language {
+  width: 0.857421875em;
 }
-.icon-medium:before {
-  content: "\f23a";
+.icon-child {
+  width: 0.7138671875em;
 }
-.icon-heart:before {
-  content: "\f004";
+.flex {
+  display: flex;
+  align-items: center;
 }
-.icon-book:before {
-  content: "\f02d";
-}
-.icon-linkedin:before {
-  content: "\f08c";
-}
-.icon-twitter:before {
-  content: "\f099";
-}
-.icon-github:before {
-  content: "\f09b";
-}
-.icon-link:before {
-  content: "\f0c1";
-}
-.icon-bars:before {
-  content: "\f0c9";
-}
-.icon-pinterest:before {
-  content: "\f0d2";
-}
-.icon-googleplus:before {
-  content: "\f0d5";
-}
-.icon-circle:before {
-  content: "\f111";
-}
-.icon-code:before {
-  content: "\f121";
-}
-.icon-youtube:before {
-  content: "\f167";
-}
-.icon-stackoverflow:before {
-  content: "\f16c";
-}
-.icon-bitbucket:before {
-  content: "\f171";
-}
-.icon-tumblr:before {
-  content: "\f173";
-}
-.icon-dribbble:before {
-  content: "\f17d";
-}
-.icon-skype:before {
-  content: "\f17e";
-}
-.icon-foursquare:before {
-  content: "\f180";
-}
-.icon-gittip:before {
-  content: "\f184";
-}
-.icon-gratipay:before {
-  content: "\f184";
-}
-.icon-stackexchange:before {
-  content: "\f18d";
-}
-.icon-vimeo:before {
-  content: "\f194";
-}
-.icon-graduation-cap:before {
-  content: "\f19d";
-}
-.icon-language:before {
-  content: "\f1ab";
-}
-.icon-child:before {
-  content: "\f1ae";
-}
-.icon-behance:before {
-  content: "\f1b5";
-}
-.icon-spotify:before {
-  content: "\f1bc";
-}
-.icon-soundcloud:before {
-  content: "\f1be";
-}
-.icon-codepen:before {
-  content: "\f1cb";
-}
-.icon-hackernews:before {
-  content: "\f1d4";
-}
-.icon-lastfm:before {
-  content: "\f202";
-}
-.icon-angellist:before {
-  content: "\f209";
-}
-.icon-facebook:before {
-  content: "\f230";
-}
-.icon-meetup .path1:before {
-  content: "\e901";
-  color: rgb(255, 255, 255);
-}
-.icon-meetup .path2:before {
-  content: "\e902";
-  margin-left: -1.5em;
-  color: rgb(240, 1, 1);
-}
-.icon-meetup .path3:before {
-  content: "\e903";
-  margin-left: -1.5em;
-  color: rgb(3, 3, 3);
-}
-.icon-blogger:before {
-  content: "\e900";
-}
-.icon-exercism:before {
-  content: "\e601";
-}
-.icon-profile:before {
-  content: "\e600";
-}
-.icon-tools:before {
-  content: "\e034";
-}
-.icon-location:before {
-  content: "\e602";
-}
-.icon-mail:before {
-  content: "\e603";
-}
-.icon-phone:before {
-  content: "\e03f";
-}
-.icon-newspaper:before {
-  content: "\e607";
-}
-.icon-dots-three-horizontal:before {
-  content: "\e60b";
-}
-.icon-thumbs-up:before {
-  content: "\e604";
-}
-.icon-chevron-down:before {
-  content: "\e60c";
-}
-.icon-chevron-up:before {
-  content: "\e60d";
-}
-.icon-dots-three-horizontal:before {
-  content: "\e60b";
-}
-.icon-thumbs-up:before {
-  content: "\e604";
-}
-.icon-board:before {
-  content: "\e608";
-}
-
-
 .relative {
   position: relative;
 }
@@ -284,22 +118,13 @@
   padding: 0;
   outline: none !important;
 }
-@font-face {
-  font-family: 'jst-elegant';
-  src: url("//unpkg.com/jsonresume-theme-elegant@1.10.1/assets/icomoon/fonts/icomoon.eot?f218wo");
-  src: url("//unpkg.com/jsonresume-theme-elegant@1.10.1/assets/icomoon/fonts/icomoon.eot?f218wo#iefix") format('embedded-opentype'), url("//unpkg.com/jsonresume-theme-elegant@1.10.1/assets/icomoon/fonts/icomoon.ttf?f218wo") format('truetype'), url("//unpkg.com/jsonresume-theme-elegant@1.10.1/assets/icomoon/fonts/icomoon.woff?f218wo") format('woff'), url("//unpkg.com/jsonresume-theme-elegant@1.10.1/assets/icomoon/fonts/icomoon.svg?f218wo#icomoon") format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-[class^="icon-"],
-[class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'jst-elegant' !important;
-}
 body {
   font-family: 'Lato';
   background: #f0f0f0;
   color: #333;
+}
+svg {
+  pointer-events: none;
 }
 .main {
   padding: 5px;
@@ -329,7 +154,7 @@ body {
   }
 }
 .background-card {
-  padding: 10px 20px;
+  padding: 20px 20px 10px 20px;
 }
 .card-wrapper {
   padding: 5px;
@@ -351,8 +176,8 @@ body {
   width: 100%;
 }
 .background-details .detail .title,
-.background-details .detail .icon {
-  color: #707070;
+.background-details .detail .icon * {
+  color: #707070 !important;
 }
 .background-details .detail .mobile-title {
   display: none;
@@ -390,16 +215,20 @@ body {
   }
 }
 .info .content.has-sidebar {
-  width: 80%;
   box-sizing: border-box;
-  float: left;
-  padding: 0 10px;
+  padding-right: 20px;
   border-right: 1px solid #cdcdcd;
+  flex: 80%;
+}
+.info .content.has-sidebar small {
+  display: none;
 }
 @media (max-width: 992px) {
   .info .content.has-sidebar {
-    width: 100%;
     border-right: 0;
+  }
+  .info .content.has-sidebar small {
+    display: block;
   }
 }
 @media (max-width: 480px) {
@@ -408,9 +237,15 @@ body {
   }
 }
 .info .sidebar {
-  margin-left: 80%;
+  flex: 20%;
   box-sizing: border-box;
   padding: 10px;
+  white-space: nowrap;
+}
+@media (max-width: 992px) {
+  .info .sidebar {
+    display: none;
+  }
 }
 @media (max-width: 480px) {
   ul {
@@ -419,11 +254,11 @@ body {
 }
 .current-event {
   font-size: 8px;
-  color: #5ACE24;
+  color: #5ACE24 !important;
   position: absolute;
   right: 100%;
-  top: 4px;
-  left: -10px;
+  top: 6px;
+  left: -12px;
 }
 .mop-wrapper > p:last-child {
   margin: 0;
@@ -455,6 +290,7 @@ body {
 .floating-nav-trigger [class*=" icon-"],
 .floating-nav-trigger > .close-icon {
   line-height: 50px;
+  height: 50px;
 }
 .floating-nav-trigger .close-icon {
   display: none;
@@ -563,9 +399,16 @@ body {
   display: table;
   padding: 10px 0;
 }
+.contact-details .detail .icon,
+.contact-details .detail .info {
+  display: table-cell;
+  vertical-align: middle;
+}
 .contact-details .detail .icon {
-  padding: 0 10px;
-  color: #707070;
+  padding: 0 20px;
+}
+.contact-details .detail .icon * {
+  color: #707070 !important;
 }
 @media (max-width: 992px) {
   .contact-details .detail .icon {
@@ -574,11 +417,7 @@ body {
 }
 .contact-details .detail .info {
   font-size: 0.8em;
-}
-.contact-details .detail .icon,
-.contact-details .detail .info {
-  display: table-cell;
-  vertical-align: middle;
+  padding-right: 20px;
 }
 @media (max-width: 768px) {
   .contact-details .detail {
@@ -609,267 +448,28 @@ body {
     width: 25%;
   }
 }
-.social-links {
-  line-height: 2.5;
-}
 .social-link {
   margin-left: 5px;
   min-width: 35px;
   display: inline-block;
+  line-height: 2.5em;
+  height: 2.5em;
+  color: #000;
+}
+.social-link .icon {
+  font-size: 2em;
+}
+.social-link .info {
+  margin: 0 5px;
+  vertical-align: top;
+  font-size: 0.8em;
 }
 .social-link:first-child {
   margin-left: 0;
 }
 .social-link:hover {
-  text-decoration: none;
-}
-.link-github {
-  color: #454545;
-}
-.link-github:hover,
-.link-github:focus {
-  text-decoration: none;
-  color: #2b2b2b;
-}
-.link-twitter {
-  color: #33ccff;
-}
-.link-twitter:hover,
-.link-twitter:focus {
-  text-decoration: none;
-  color: #00bfff;
-}
-.link-blog {
-  color: #f36f24;
-}
-.link-blog:hover,
-.link-blog:focus {
-  text-decoration: none;
-  color: #d8560c;
-}
-.link-linkedin {
-  color: #007bb6;
-}
-.link-linkedin:hover,
-.link-linkedin:focus {
-  text-decoration: none;
-  color: #005983;
-}
-.link-skype {
-  color: #12A5F4;
-}
-.link-skype:hover,
-.link-skype:focus {
-  text-decoration: none;
-  color: #0986ca;
-}
-.link-instagram {
-  color: #e4405f;
-}
-.link-instagram:hover,
-.link-instagram:focus {
-  text-decoration: none;
-  color: #d31e40;
-}
-.link-stackoverflow {
-  color: #f48024;
-}
-.link-stackoverflow:hover,
-.link-stackoverflow:focus {
-  text-decoration: none;
-  color: #c3661c;
-}
-.link-stackexchange {
-  color: #62b0df;
-}
-.link-stackexchange:hover,
-.link-stackexchange:focus {
-  text-decoration: none;
-  color: #389bd6;
-}
-.link-lastfm {
-  color: #d12127;
-}
-.link-lastfm:hover,
-.link-lastfm:focus {
-  text-decoration: none;
-  color: #a51a1f;
-}
-.link-soundcloud {
-  color: #e8822d;
-}
-.link-soundcloud:hover,
-.link-soundcloud:focus {
-  text-decoration: none;
-  color: #cc6916;
-}
-.link-googleplus {
-  color: #dd4b39;
-}
-.link-googleplus:hover,
-.link-googleplus:focus {
-  text-decoration: none;
-  color: #c23321;
-}
-.link-youtube {
-  color: #dd4b39;
-}
-.link-youtube:hover,
-.link-youtube:focus {
-  text-decoration: none;
-  color: #c23321;
-}
-.link-pinterest {
-  color: #bd091f;
-}
-.link-pinterest:hover,
-.link-pinterest:focus {
-  text-decoration: none;
-  color: #8c0717;
-}
-.link-gratipay {
-  color: #630;
-}
-.link-gratipay:hover,
-.link-gratipay:focus {
-  text-decoration: none;
-  color: #331a00;
-}
-.link-vimeo {
-  color: #17b3e8;
-}
-.link-vimeo:hover,
-.link-vimeo:focus {
-  text-decoration: none;
-  color: #128fba;
-}
-.link-behance {
-  color: #2c98cf;
-}
-.link-behance:hover,
-.link-behance:focus {
-  text-decoration: none;
-  color: #2379a5;
-}
-.link-codepen {
-  color: #1c1c1c;
-}
-.link-codepen:hover,
-.link-codepen:focus {
-  text-decoration: none;
-  color: #020202;
-}
-.link-foursquare {
-  color: #fa4778;
-}
-.link-foursquare:hover,
-.link-foursquare:focus {
-  text-decoration: none;
-  color: #f91554;
-}
-.link-reddit {
-  color: #545454;
-}
-.link-reddit:hover,
-.link-reddit:focus {
-  text-decoration: none;
-  color: #3b3b3b;
-}
-.link-spotify {
-  color: #acd200;
-}
-.link-spotify:hover,
-.link-spotify:focus {
-  text-decoration: none;
-  color: #829f00;
-}
-.link-tumblr {
-  color: #2d4661;
-}
-.link-tumblr:hover,
-.link-tumblr:focus {
-  text-decoration: none;
-  color: #1d2d3e;
-}
-.link-dribbble {
-  color: #ce366f;
-}
-.link-dribbble:hover,
-.link-dribbble:focus {
-  text-decoration: none;
-  color: #a82959;
-}
-.link-facebook {
-  color: #4b6daa;
-}
-.link-facebook:hover,
-.link-facebook:focus {
-  text-decoration: none;
-  color: #3b5687;
-}
-.link-angellist {
-  color: black;
-}
-.link-angellist:hover,
-.link-angellist:focus {
-  text-decoration: none;
-  color: #000000;
-}
-.link-bitbucket {
-  color: #205081;
-}
-.link-bitbucket:hover,
-.link-bitbucket:focus {
-  text-decoration: none;
-  color: #163758;
-}
-.link-hackernews {
-  color: #ff6600;
-}
-.link-hackernews:hover,
-.link-hackernews:focus {
-  text-decoration: none;
-  color: #cc5200;
-}
-.link-exercism {
-  color: #d81d4e;
-}
-.link-exercism:hover,
-.link-exercism:focus {
-  text-decoration: none;
-  color: #ab173e;
-}
-.link-blogger {
-  color: #FF9234;
-}
-.link-blogger:hover,
-.link-blogger:focus {
-  text-decoration: none;
-  color: #ff7701;
-}
-.link-medium {
-  color: #00AB6C;
-}
-.link-medium:hover,
-.link-medium:focus {
-  text-decoration: none;
-  color: #00784c;
-}
-.link-flickr {
-  color: black;
-}
-.link-flickr:hover,
-.link-flickr:focus {
-  text-decoration: none;
-  color: #000000;
-}
-.link-telegram {
-  color: #3BABDD;
-}
-.link-telegram:hover,
-.link-telegram:focus {
-  text-decoration: none;
-  color: #2291c3;
+  filter: brightness(80%);
+  color: #444;
 }
 .card-skills {
   position: relative;
@@ -892,19 +492,19 @@ body {
 }
 .skill-level .skill-progress.beginner {
   height: 50%;
-  background: #e74c3c;
+  background: #e74c3c !important;
 }
 .skill-level .skill-progress.intermediate {
   height: 70%;
-  background: #f1c40f;
+  background: #f1c40f !important;
 }
 .skill-level .skill-progress.advanced {
   height: 80%;
-  background: #428bca;
+  background: #428bca !important;
 }
 .skill-level .skill-progress.master {
   height: 95%;
-  background: #5cb85c;
+  background: #5cb85c !important;
 }
 .skill-info {
   margin-left: 15px;
@@ -919,40 +519,29 @@ body {
     font-size: inherit;
   }
 }
-.icon-meetup .path2:before {
-  margin-left: 0;
+.icon-curse {
+  color: #f05523 !important;
+}
+.printing {
+  display: none;
 }
 @media print {
   a[href]:after {
     content: none !important;
   }
-  .profile-card {
-    text-align: center;
-  }
-  .profile-pic {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .profile-pic img {
-    border-radius: 0;
-  }
-  .name-and-profession {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 15px;
-  }
-  .contact-details .detail {
-    position: relative;
-    float: left;
-    width: 25%;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding: 0;
+  .printing {
+    display: inherit;
   }
   .floating-nav,
   .floating-nav-trigger {
     display: none;
+  }
+  .social-link .icon {
+    font-size: 1.33333333em;
+  }
+  .text-muted,
+  .text-muted * {
+    color: #777777 !important;
   }
   .pagebreak {
     page-break-before: always;

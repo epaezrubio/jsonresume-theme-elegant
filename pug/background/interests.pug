@@ -1,9 +1,6 @@
 unless _.isEmpty(resume.interests)
   .detail#interests
-    .icon
-      i.fs-lg.icon-heart
-      span.mobile-title Interests
-
+    +large_icon('heart', 'Interests')
     .info
       h4.title.text-uppercase Interests
 
