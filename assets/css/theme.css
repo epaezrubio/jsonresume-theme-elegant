@@ -82,10 +82,10 @@ Single-colored icons can be modified like so:
   margin-right: 0;
 }
 .link-disguise {
-  color: inherit;
+  color: inherit !important;
 }
 .link-disguise:hover {
-  color: inherit;
+  color: inherit !important;
 }
 .clear-margin {
   margin: 0;
@@ -454,7 +454,6 @@ svg {
   display: inline-block;
   line-height: 2.5em;
   height: 2.5em;
-  color: #000;
 }
 .social-link .icon {
   font-size: 2em;
@@ -529,12 +528,22 @@ svg {
   a[href]:after {
     content: none !important;
   }
+  a,
+  a * {
+    color: #337ab7 !important;
+  }
   .printing {
     display: inherit;
   }
   .floating-nav,
   .floating-nav-trigger {
     display: none;
+  }
+  .card {
+    border: none;
+  }
+  .profile-pic img {
+    border-radius: 0;
   }
   .social-link .icon {
     font-size: 1.33333333em;

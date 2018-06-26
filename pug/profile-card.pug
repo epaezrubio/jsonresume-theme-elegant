@@ -9,7 +9,7 @@ mixin profile_card_detail(icon, info, itemprop, icon_title)
       else
         |#{info}
 
-mixin render_links(profiles)
+mixin social_links(profiles)
   each profile in profiles
     a.social-link(title=resume.basics.name + " on " + profile.network, href=profile.url, target="_blank", data-toggle="tooltip")
       svg.icon(class="icon-" + profile.label, title='')
@@ -50,7 +50,7 @@ section.col-md-3.card-wrapper.profile-card-wrapper.affix
 
     .social-links.text-center
       div
-        +render_links(resume.basics.top_five_profiles)
+        +social_links(resume.basics.top_five_profiles)
 
         if resume.basics.remaining_profiles.length > 0
           button.btn.btn-default.btn-sm.btn-circle-sm.pull-right.js-profiles-collapse(
@@ -60,4 +60,6 @@ section.col-md-3.card-wrapper.profile-card-wrapper.affix
               use(xlink:href="#icon-chevron-down")
 
           #remaining-profiles.collapse.text-left
-            +render_links(resume.basics.remaining_profiles)
+            +social_links(resume.basics.remaining_profiles)
+
+    hr.printing

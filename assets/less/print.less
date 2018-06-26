@@ -4,7 +4,11 @@
 
 @media print {
     a[href]:after {
-        content: none !important;
+      content: none !important;
+    }
+
+    a, a * {
+      color: @link-color !important;
     }
 
     .printing {
@@ -12,7 +16,15 @@
     }
 
     .floating-nav, .floating-nav-trigger {
-        display: none;
+      display: none;
+    }
+
+    .card {
+      border: none;
+    }
+
+    .profile-pic img {
+      border-radius: 0;
     }
 
     .social-link .icon {

@@ -8,6 +8,11 @@ script.
       $( '.js-floating-nav-trigger' ).toggleClass( 'is-open' );
     };
 
+    var getParameter = function(name) {
+       if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+          return decodeURIComponent(name[1]);
+    };
+
     $( ".background-card" ).css( "min-height", window.screen.availHeight + "px" );
     $( "[data-toggle=tooltip]" ).tooltip();
     $( '.js-floating-nav-trigger' ).on( 'click', function(e) {
@@ -27,6 +32,11 @@ script.
         .removeClass( 'icon-chevron-up' )
         .addClass( 'icon-chevron-down' );
     });
+
+    if ( getParameter('static') == 1 ) {
+      $( '.js-floating-nav-trigger' ).hide();
+      $( '#remaining-profiles' ).hide();
+    }
   });
 
 script.
