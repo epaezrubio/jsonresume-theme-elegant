@@ -1,4 +1,4 @@
-# Jali Elegant Theme ![](https://badge.fury.io/js/jsonresume-theme-elegant-jali.svg) ![](https://img.shields.io/badge/build-passing-brightgreen.svg) ![](https://david-dm.org/jaliborc/jsonresume-theme-elegant.svg) ![](https://img.shields.io/npm/l/jsonresume-theme-elegant.svg)
+# Jali Elegant Theme ![](https://badge.fury.io/js/jsonresume-theme-elegant-jali.svg) ![](https://travis-ci.org/Jaliborc/jsonresume-theme-elegant.svg?branch=master) ![](https://david-dm.org/jaliborc/jsonresume-theme-elegant.svg) ![](https://img.shields.io/npm/l/jsonresume-theme-elegant.svg)
 
 Personal modification of the [Elegant](https://github.com/mudassir0909/jsonresume-theme-elegant) responsive theme for [JsonResume](https://jsonresume.org/) by Mudassir Ali.
 
