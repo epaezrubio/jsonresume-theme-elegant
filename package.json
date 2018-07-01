@@ -4,7 +4,7 @@
   "description": "Modification of elegant theme for jsonresume",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jshint serve.js | jshint render.js | node render"
   },
   "repository": {
     "type": "git",
@@ -35,11 +35,12 @@
   },
   "devDependencies": {
     "grunt": "^0.4.5",
-    "less": "^1.7.5",
     "grunt-contrib-clean": "0.5.x",
     "grunt-contrib-copy": "0.4.x",
     "grunt-contrib-less": "^1.4.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-exec": "^0.4.6"
+    "grunt-exec": "^0.4.6",
+    "jshint": "^2.9.5",
+    "less": "^1.7.5"
   }
 }
