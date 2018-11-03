@@ -25,7 +25,7 @@ function capitalize(str) {
 }
 
 function convertMarkdown(str) {
-    return str != null && markdown.render(str)
+    return str != null && markdown.render(str) || null
 }
 
 function getFloatingNavItems(resume) {
