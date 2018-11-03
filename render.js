@@ -8,7 +8,9 @@ const fs = require('fs')
 const path = require('path')
 const theme = require('./index.js')
 const args = require('minimist')(process.argv.slice(2))
-const source = args._[0], target = args._[1] || 'index.html'
+
+let source = args._[0]
+let target = args._[1] || source && (path.basename(source, '.json') + '.html') || 'index.html'
 
 let dir = source && path.dirname(source) || path.join(__dirname, 'build')
 let resume = source && JSON.parse(fs.readFileSync(source)) || require('resume-schema').resumeJson
