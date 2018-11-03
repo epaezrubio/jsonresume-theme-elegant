@@ -11,7 +11,7 @@ var path = require('path')
 var http = require('http')
 var theme = require('./index.js')
 
-var resume = JSON.parse(fs.readFileSync(path.join(__dirname, 'node_modules/resume-schema/resume.json'), 'utf8'))
+var resume = require('resume-schema').resumeJson
 var port = 8888
 
 http.createServer(function(req, res) {
@@ -27,7 +27,7 @@ http.createServer(function(req, res) {
             res.end(image, 'binary')
         } catch (error) {
             if (error.code === 'ENOENT') {
-                console.log('Picture not found !')
+                console.log('Picture not found!')
                 res.end()
             } else {
                 throw error
