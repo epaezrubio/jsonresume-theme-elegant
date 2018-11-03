@@ -14,11 +14,10 @@ let target = args._[1] || source && (path.basename(source, '.json') + '.html') |
 
 let dir = source && path.dirname(source) || path.join(__dirname, 'build')
 let resume = source && JSON.parse(fs.readFileSync(source)) || require('resume-schema').resumeJson
-let style = {'priority': args.r && 'research', 'media': args.p && 'print'}
 
 if ( !fs.existsSync(dir) )
     fs.mkdirSync(dir)
 
-fs.writeFile(path.join(dir, target), theme.render(resume, style), function(err) {
+fs.writeFile(path.join(dir, target), theme.render(resume), function(err) {
     console.log(err || `written ${target} to ${dir}.`)
 })

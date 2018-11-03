@@ -15,12 +15,17 @@ Personal modification of the [Elegant](https://github.com/mudassir0909/jsonresum
 * Reworked the print design. (*maximum features, no print color waste*)
 * Added continuous integration (*using Travis CI*)
 
+### Extended Schema
+An additional optional entry called `style` allows you to make some minor changes to the resulting file:
+
+    "style": {
+      "priority": "research",
+      "media": "print"
+    }
+
 ## Command Line Interface
-Added a basic command line to the theme. This will render the given .json file with the given file name in the same repository:
+Jali Elegent Theme provides a basic command line tool as well. This will render the given .json file into the given file name on the same directory:
 
-    jali-resume SOURCE_JSON TARGET_NAME
+    jali-resume myfolder/myresume.json outputname.html
 
-Additional optional flags:
-
-    -r: Prioritizes research content
-    -p: Generates paged adapted to static (i.e: print) media
+Both input path and output name are optional parameters.

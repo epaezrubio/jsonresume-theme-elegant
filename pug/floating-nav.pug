@@ -5,12 +5,13 @@ mixin make_nav_link(nav_item)
         use(xlink:href="#icon-" + nav_item.icon)
       | #{nav_item.label}
 
-a(href="#").js-floating-nav-trigger.floating-nav-trigger
-  svg.icon-bars
-    use(xlink:href="#icon-bars")
-  span.close-icon &times;
+if resume.style.media != 'print'
+  a(href="#").js-floating-nav-trigger.floating-nav-trigger
+    svg.icon-bars
+      use(xlink:href="#icon-bars")
+    span.close-icon &times;
 
-nav.floating-nav.js-floating-nav
-  ul.list-unstyled
-    each nav_item in floating_nav_items
-      +make_nav_link(nav_item)
+  nav.floating-nav.js-floating-nav
+    ul.list-unstyled
+      each nav_item in nav_items
+        +make_nav_link(nav_item)
