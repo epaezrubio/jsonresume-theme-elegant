@@ -1,10 +1,10 @@
 {
   "name": "jsonresume-theme-elegant-jali",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Modification of elegant theme for jsonresume",
   "main": "index.js",
   "scripts": {
-    "test": "jshint serve.js | jshint render.js | node render"
+    "test": "jshint serve.js | jshint render.js | node render | node render node_modules/resume-schema/resume.json"
   },
   "bin": {
     "jali-resume": "render.js"
