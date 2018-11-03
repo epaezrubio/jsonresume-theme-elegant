@@ -21,12 +21,24 @@ mixin timed_event_title(title, ongoing, ongoing_title)
 section.col-md-9.card-wrapper.pull-right
   .card.background-card
     .background-details
-      include background/about.pug
-      include background/work-experience.pug
-      include background/volunteer-work.pug
-      include background/publications.pug
-      include background/awards.pug
-      include background/education.pug
-      include background/references.pug
-      include background/skills.pug
-      include background/interests.pug
+      case style.priority
+        when 'research'
+          include background/about.pug
+          include background/publications.pug
+          include background/awards.pug
+          include background/education.pug
+          include background/references.pug
+          include background/work-experience.pug
+          include background/volunteer-work.pug
+          include background/skills.pug
+          include background/interests.pug
+        default
+          include background/about.pug
+          include background/work-experience.pug
+          include background/volunteer-work.pug
+          include background/publications.pug
+          include background/awards.pug
+          include background/education.pug
+          include background/references.pug
+          include background/skills.pug
+          include background/interests.pug

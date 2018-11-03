@@ -12,3 +12,13 @@ Personal modification of the [Elegant](https://github.com/mudassir0909/jsonresum
 * Reorganized the order of the background sections.
 * Reworked the print design. (*maximum features, no print color waste*)
 * Added continuous integration (*using Travis CI*)
+
+## Command Line Interface
+Added a basic command line to the theme. This will render the given .json file with the given file name in the same repository:
+
+    jali-resume SOURCE_JSON TARGET_NAME
+
+Additional optional flags:
+
+    -r: Prioritizes research content
+    -p: Generates paged adapted to static (i.e: print) media

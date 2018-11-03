@@ -1,30 +1,22 @@
-//
-// This script will render the response and write it to the index.html file.
+#!/usr/bin/env node
 //
 // Usage:
-// `node render`
+// `node render SOURCE TARGET`
 //
 
-var fs = require('fs');
-var resume = require("resume-schema").resumeJson;
-var theme = require("./index.js");
+const fs = require('fs')
+const path = require('path')
+const theme = require('./index.js')
+const args = require('minimist')(process.argv.slice(2))
+const source = args._[0], target = args._[1]
 
-if ( !fs.existsSync("./build") )
-    fs.mkdirSync("./build")
+let dir = source && path.dirname(source) || path.join(__dirname, 'build')
+let resume = source && fs.readFileSync(source) || require('resume-schema').resumeJson
+let style = {'priority': args.r && 'research', 'media': args.p && 'print'}
 
-fs.writeFile("./build/index.html", render(), function(err) {
-    if(err) {
-        console.log(err);
-    } else {
-        console.log("index.html written to build folder.");
-    }
-});
+if ( !fs.existsSync(dir) )
+    fs.mkdirSync(dir)
 
-function render() {
-    try {
-        return theme.render(resume);
-    } catch (e) {
-        console.log(e.message);
-        return "";
-    }
-}
+fs.writeFile(path.join(dir, target || 'resume.html'), theme.render(resume, style), function(err) {
+    console.log(err || 'resume.html written to build folder.')
+})

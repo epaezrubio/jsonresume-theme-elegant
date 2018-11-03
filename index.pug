@@ -12,7 +12,8 @@ html(lang="en")
 
     .container-fluid
       .row.main.clearfix
-        include pug/floating-nav.pug
+        if style.media != 'print'
+          include pug/floating-nav.pug
         include pug/profile-card.pug
         include pug/background-card.pug
 
