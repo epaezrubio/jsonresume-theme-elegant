@@ -17,4 +17,5 @@ unless _.isEmpty(resume.awards)
                   small
                     |Awarded on: #{award.date}
 
-                .mop-wrapper!= award.summary
+                if award.summary
+                  .mop-wrapper!= award.summary

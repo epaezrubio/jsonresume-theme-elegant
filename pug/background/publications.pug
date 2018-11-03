@@ -20,6 +20,10 @@ unless _.isEmpty(resume.publications)
                   |#{publication.publisher}
 
                 p.text-muted
-                  small= 'Published on: ' + publication.releaseDate
+                  if publication.releaseDate
+                    small= 'Published on: ' + publication.releaseDate
+                  else
+                    small= 'TBA'
 
-                .mop-wrapper!= publication.summary
+                if publication.summary
+                  .mop-wrapper!= publication.summary
