@@ -1,4 +1,6 @@
-# Jali Elegant Theme [![](https://img.shields.io/npm/v/jsonresume-theme-elegant-jali.svg)](https://www.npmjs.com/package/jsonresume-theme-elegant-jali) [![](https://travis-ci.org/Jaliborc/jsonresume-theme-elegant.svg)](https://travis-ci.org/Jaliborc/jsonresume-theme-elegant/) ![](https://david-dm.org/jaliborc/jsonresume-theme-elegant.svg) ![](https://img.shields.io/npm/l/jsonresume-theme-elegant-jali.svg)
+# Jali Elegant Theme
+[![](https://img.shields.io/npm/v/jsonresume-theme-elegant.svg)](https://www.npmjs.com/package/jsonresume-theme-elegant) [![](https://travis-ci.org/Jaliborc/jsonresume-theme-elegant.svg)](https://travis-ci.org/Jaliborc/jsonresume-theme-elegant/) ![](https://david-dm.org/jaliborc/jsonresume-theme-elegant.svg) ![](https://img.shields.io/npm/l/jsonresume-theme-elegant.svg)
+
 
 Personal modification of the [Elegant](https://github.com/mudassir0909/jsonresume-theme-elegant) responsive theme for [JsonResume](https://jsonresume.org/) by Mudassir Ali.
 
