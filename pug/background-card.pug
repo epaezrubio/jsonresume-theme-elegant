@@ -21,7 +21,7 @@ mixin timed_event_title(title, ongoing, ongoing_title)
 section.col-md-9.card-wrapper.pull-right
   .card.background-card
     .background-details
-      case style.priority
+      case resume.style.priority
         when 'research'
           include background/about.pug
           include background/publications.pug

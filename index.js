@@ -11,9 +11,7 @@ utils.setConfig({
 })
 
 function interpolate(object, keyPath) {
-    var keys = keyPath.split('.')
-
-    return _(keys).reduce(function(res, key) {
+    return _(keyPath.split('.')).reduce(function(res, key) {
         return (res || {})[key]
     }, object)
 }
@@ -23,41 +21,51 @@ function capitalize(str) {
         str = str.toString()
         return str[0].toUpperCase() + str.slice(1).toLowerCase()
     }
-
     return str
 }
 
 function convertMarkdown(str) {
-    if (str != null) {
-        return markdown.render(str)
-    }
+    return str != null && markdown.render(str)
 }
 
 function getFloatingNavItems(resume) {
-    var floating_nav_items = [
-        {label: 'About', target: 'about', icon: 'board', requires: 'basics.summary'},
-        {label: 'Work Experience', target: 'work-experience', icon: 'office', requires: 'work'},
-        {label: 'Volunteer Work', target: 'volunteer-work', icon: 'child', requires: 'volunteer'},
-        {label: 'Publications', target: 'publications', icon: 'newspaper', requires: 'publications'},
-        {label: 'Awards', target: 'awards', icon: 'trophy', requires: 'awards'},
-        {label: 'Education', target: 'education', icon: 'graduation-cap', requires: 'education'},
-        {label: 'References', target: 'references', icon: 'thumbs-up', requires: 'references'},
-        {label: 'Skills', target: 'skills', icon: 'tools', requires: 'skills'},
-        {label: 'Interests', target: 'interests', icon: 'heart', requires: 'interests'}
-    ]
+    var items
+    if (resume.style.priority == 'research')
+      items = [
+          {label: 'About', target: 'about', icon: 'board', requires: 'basics.summary'},
+          {label: 'Publications', target: 'publications', icon: 'newspaper', requires: 'publications'},
+          {label: 'Awards', target: 'awards', icon: 'trophy', requires: 'awards'},
+          {label: 'Education', target: 'education', icon: 'graduation-cap', requires: 'education'},
+          {label: 'References', target: 'references', icon: 'thumbs-up', requires: 'references'},
+          {label: 'Work Experience', target: 'work-experience', icon: 'office', requires: 'work'},
+          {label: 'Volunteer Work', target: 'volunteer-work', icon: 'child', requires: 'volunteer'},
+          {label: 'Skills', target: 'skills', icon: 'tools', requires: 'skills'},
+          {label: 'Interests', target: 'interests', icon: 'heart', requires: 'interests'}
+      ]
+    else
+      items = [
+          {label: 'About', target: 'about', icon: 'board', requires: 'basics.summary'},
+          {label: 'Work Experience', target: 'work-experience', icon: 'office', requires: 'work'},
+          {label: 'Volunteer Work', target: 'volunteer-work', icon: 'child', requires: 'volunteer'},
+          {label: 'Publications', target: 'publications', icon: 'newspaper', requires: 'publications'},
+          {label: 'Awards', target: 'awards', icon: 'trophy', requires: 'awards'},
+          {label: 'Education', target: 'education', icon: 'graduation-cap', requires: 'education'},
+          {label: 'References', target: 'references', icon: 'thumbs-up', requires: 'references'},
+          {label: 'Skills', target: 'skills', icon: 'tools', requires: 'skills'},
+          {label: 'Interests', target: 'interests', icon: 'heart', requires: 'interests'}
+      ]
 
-    return _(floating_nav_items).filter(function(item) {
-        var value = interpolate(resume, item.requires)
-
-        return !_.isEmpty(value)
+    return _(items).filter(function(item) {
+        return !_.isEmpty(interpolate(resume, item.requires))
     })
 }
 
-function render(resume, style) {
+function render(resume) {
     var addressValues
     var addressAttrs = ['address', 'city', 'region', 'countryCode', 'postalCode']
     var css = fs.readFileSync(__dirname + '/assets/css/theme.css', 'utf-8')
 
+    resume.style = resume.style || {}
     resume.basics.picture = utils.getUrlForPicture(resume)
     addressValues = _(addressAttrs).map(function(key) {
         return resume.basics.location[key]
@@ -156,9 +164,8 @@ function render(resume, style) {
     })
 
     return pug.renderFile(__dirname + '/index.pug', {
+      nav_items: getFloatingNavItems(resume),
       resume: resume,
-      floating_nav_items: getFloatingNavItems(resume),
-      style: style || {},
       css: css,
       _: _
     })
