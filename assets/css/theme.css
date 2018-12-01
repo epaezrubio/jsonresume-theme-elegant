@@ -15,28 +15,28 @@ Single-colored icons can be modified like so:
 }
 ========================================== */
 .icon-curse {
-  width: 0.6767578125em;
+  width: 0.67675781em;
 }
 .icon-book {
-  width: 0.9287109375em;
+  width: 0.92871094em;
 }
 .icon-link {
-  width: 0.9287109375em;
+  width: 0.92871094em;
 }
 .icon-bars {
-  width: 0.857421875em;
+  width: 0.85742188em;
 }
 .icon-circle {
-  width: 0.857421875em;
+  width: 0.85742188em;
 }
 .icon-graduation-cap {
-  width: 1.2861328125em;
+  width: 1.28613281em;
 }
 .icon-language {
-  width: 0.857421875em;
+  width: 0.85742188em;
 }
 .icon-child {
-  width: 0.7138671875em;
+  width: 0.71386719em;
 }
 .flex {
   display: flex;
@@ -97,7 +97,7 @@ Single-colored icons can be modified like so:
 }
 .fs-lg {
   font-size: 1.33333333em;
-  line-height: .75em;
+  line-height: 0.75em;
   vertical-align: -15%;
 }
 .fs-2x {
@@ -521,7 +521,10 @@ svg {
 .icon-curse {
   color: #f05523 !important;
 }
-.printing {
+.static .screen {
+  display: none;
+}
+.print {
   display: none;
 }
 @media print {
@@ -532,11 +535,10 @@ svg {
   a * {
     color: #337ab7 !important;
   }
-  .printing {
+  .print {
     display: inherit;
   }
-  .floating-nav,
-  .floating-nav-trigger {
+  .screen {
     display: none;
   }
   .card {

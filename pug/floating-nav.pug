@@ -5,7 +5,7 @@ mixin make_nav_link(nav_item)
         use(xlink:href="#icon-" + nav_item.icon)
       | #{nav_item.label}
 
-if resume.style.media != 'print'
+.screen
   a(href="#").js-floating-nav-trigger.floating-nav-trigger
     svg.icon-bars
       use(xlink:href="#icon-bars")

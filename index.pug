@@ -7,7 +7,7 @@ html(lang="en")
     title= resume.basics.name
     include pug/stylesheets.pug
 
-  body(itemscope, itemtype="http://schema.org/Person")
+  body(itemscope, itemtype="http://schema.org/Person", class=static && 'static' || '')
     include assets/icomoon/symbol-defs.svg
 
     .container-fluid

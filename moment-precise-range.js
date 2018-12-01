@@ -1,8 +1,8 @@
 // Originally taken from https://github.com/codebox/moment-precise-range
-var moment = require('moment');
+const moment = require('moment');
 
 (function(moment) {
-    var STRINGS = {
+    const STRINGS = {
         nodiff: '',
         year: 'year',
         years: 'years',
@@ -22,7 +22,7 @@ var moment = require('moment');
         return moment.preciseDiff(this, d2);
     };
     moment.preciseDiff = function(d1, d2) {
-        var m1 = moment(d1), m2 = moment(d2);
+        let m1 = moment(d1), m2 = moment(d2);
 
         /*
             The difference between two dates say 01-02-2016 & 31-03-2016 comes out as 1 month 30days
@@ -42,17 +42,17 @@ var moment = require('moment');
             return STRINGS.nodiff;
         }
         if (m1.isAfter(m2)) {
-            var tmp = m1;
+            let tmp = m1;
             m1 = m2;
             m2 = tmp;
         }
 
-        var yDiff = m2.year() - m1.year();
-        var mDiff = m2.month() - m1.month();
-        var dDiff = m2.date() - m1.date();
-        var hourDiff = m2.hour() - m1.hour();
-        var minDiff = m2.minute() - m1.minute();
-        var secDiff = m2.second() - m1.second();
+        let yDiff = m2.year() - m1.year();
+        let mDiff = m2.month() - m1.month();
+        let dDiff = m2.date() - m1.date();
+        let hourDiff = m2.hour() - m1.hour();
+        let minDiff = m2.minute() - m1.minute();
+        let secDiff = m2.second() - m1.second();
 
         if (secDiff < 0) {
             secDiff = 60 + secDiff;
@@ -67,7 +67,7 @@ var moment = require('moment');
             dDiff--;
         }
         if (dDiff < 0) {
-            var daysInLastFullMonth = moment(m2.year() + '-' + (m2.month() + 1), "YYYY-MM").subtract(1, 'M').daysInMonth();
+            let daysInLastFullMonth = moment(m2.year() + '-' + (m2.month() + 1), "YYYY-MM").subtract(1, 'M').daysInMonth();
             if (daysInLastFullMonth < m1.date()) { // 31/01 -> 2/03
                 dDiff = daysInLastFullMonth + dDiff + (m1.date() - daysInLastFullMonth);
             } else {
@@ -91,7 +91,7 @@ var moment = require('moment');
                 return 'Joined Today';
             }
         } else  {
-            var result = [];
+            let result = [];
 
             if (yDiff) {
                 result.push(pluralize(yDiff, 'year'));

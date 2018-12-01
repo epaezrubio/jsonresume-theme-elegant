@@ -1,19 +1,16 @@
-const _ = require('underscore')
-const fs = require('fs')
-const pug = require('pug')
-const moment = require('moment')
+const markdownit = require('markdown-it')({breaks: true}).use(require('markdown-it-abbr'))
+const moment = require('./moment-precise-range')
 const utils = require('jsonresume-themeutils')
-const markdown = require('markdown-it')({breaks: true}).use(require('markdown-it-abbr'))
+const puppeteer = require('puppeteer')
+const pdfparse = require('pdf-parse')
+const _ = require('lodash')
+const pug = require('pug')
+const fs = require('fs')
 
-require('./moment-precise-range.js')
-utils.setConfig({
-    date_format: 'MMM, YYYY'
-})
+utils.setConfig({date_format: 'MMM, YYYY'})
 
 function interpolate(object, keyPath) {
-    return _(keyPath.split('.')).reduce(function(res, key) {
-        return (res || {})[key]
-    }, object)
+    return _.reduce(keyPath.split('.'), (res, key) => (res || {})[key], object)
 }
 
 function capitalize(str) {
@@ -24,13 +21,13 @@ function capitalize(str) {
     return str
 }
 
-function convertMarkdown(str) {
-    return str != null && markdown.render(str) || null
+function markdown(str) {
+    return str != null && markdownit.render(str) || null
 }
 
-function getFloatingNavItems(resume) {
+function floatingNavItems(resume) {
     var items
-    if (resume.style.priority == 'research')
+    if (resume.basics.priority == 'research')
       items = [
           {label: 'About', target: 'about', icon: 'board', requires: 'basics.summary'},
           {label: 'Publications', target: 'publications', icon: 'newspaper', requires: 'publications'},
@@ -55,31 +52,23 @@ function getFloatingNavItems(resume) {
           {label: 'Interests', target: 'interests', icon: 'heart', requires: 'interests'}
       ]
 
-    return _(items).filter(function(item) {
-        return !_.isEmpty(interpolate(resume, item.requires))
-    })
+    return _.filter(items, item => !_.isEmpty(interpolate(resume, item.requires)))
 }
 
-function render(resume) {
-    var addressValues
-    var addressAttrs = ['address', 'city', 'region', 'countryCode', 'postalCode']
-    var css = fs.readFileSync(__dirname + '/assets/css/theme.css', 'utf-8')
+function html(resume, static) {
+    const addressAttrs = ['address', 'city', 'region', 'countryCode', 'postalCode']
+    let addressValues = _.map(addressAttrs, key => resume.basics.location[key])
+    let css = fs.readFileSync(__dirname + '/assets/css/theme.css', 'utf-8')
 
-    resume.style = resume.style || {}
     resume.basics.picture = utils.getUrlForPicture(resume)
-    addressValues = _(addressAttrs).map(function(key) {
-        return resume.basics.location[key]
-    })
-
-    resume.basics.summary = convertMarkdown(resume.basics.summary)
+    resume.basics.summary = markdown(resume.basics.summary)
     resume.basics.computed_location = _.compact(addressValues).join(', ')
 
-    if (resume.languages) {
-        resume.basics.languages = _.pluck(resume.languages, 'language').join(', ')
-    }
+    if (resume.languages)
+        resume.basics.languages = _.map(resume.languages, 'language').join(', ')
 
-    _(resume.basics.profiles).each(function(profile) {
-        var label = profile.network.toLowerCase()
+    _.each(resume.basics.profiles, profile => {
+        let label = profile.network.toLowerCase()
         profile.url = utils.getUrlForProfile(resume, label)
         profile.label = label
     })
@@ -87,90 +76,115 @@ function render(resume) {
     resume.basics.top_five_profiles = resume.basics.profiles.slice(0, 5)
     resume.basics.remaining_profiles = resume.basics.profiles.slice(5)
 
-    _.each(resume.work, function(work_info) {
-        var start_date = moment(work_info.startDate, 'YYYY-MM-DD')
-        var end_date = moment(work_info.endDate, 'YYYY-MM-DD')
-        var can_calculate_period = start_date.isValid() && end_date.isValid()
+    _.each(resume.work, job => {
+        let start_date = moment(job.startDate, 'YYYY-MM-DD')
+        let end_date = moment(job.endDate, 'YYYY-MM-DD')
+        let can_calculate_period = start_date.isValid() && end_date.isValid()
 
         if (can_calculate_period)
-            work_info.duration = moment.preciseDiff(start_date, end_date)
+            job.duration = moment.preciseDiff(start_date, end_date)
 
         if (start_date.isValid())
-          work_info.startDate = utils.getFormattedDate(start_date)
+          job.startDate = utils.getFormattedDate(start_date)
 
         if (end_date.isValid())
-          work_info.endDate = utils.getFormattedDate(end_date)
+          job.endDate = utils.getFormattedDate(end_date)
 
-        work_info.summary = convertMarkdown(work_info.summary)
-        work_info.highlights = _(work_info.highlights).map(function(highlight) {
-            return convertMarkdown(highlight)
-        })
+        job.summary = markdown(job.summary)
+        job.highlights = _.map(job.highlights, markdown)
     })
 
-    _.each(resume.skills, function(skill_info) {
-        var levels = ['Beginner', 'Intermediate', 'Advanced', 'Master']
+    _.each(resume.skills, skill => {
+        const levels = ['Beginner', 'Intermediate', 'Advanced', 'Master']
 
-        if (skill_info.type)
-          skill_info.subtitle = skill_info.type.toLowerCase()
-
-        if (skill_info.level) {
-            skill_info.class = skill_info.level.toLowerCase()
-            skill_info.level = capitalize(skill_info.level.trim())
-            skill_info.display_progress_bar = _.contains(levels, skill_info.level)
+        if (skill.type)
+          skill.subtitle = skill.type.toLowerCase()
+        if (skill.level) {
+            skill.class = skill.level.toLowerCase()
+            skill.level = capitalize(skill.level.trim())
+            skill.display_progress_bar = _.includes(levels, skill.level)
         }
     })
 
-    _.each(resume.education, function(education_info) {
-        _.each(['startDate', 'endDate'], function(type) {
-            var date = education_info[type]
-
+    _.each(resume.education, education => {
+        _.each(['startDate', 'endDate'], type => {
+            let date = education[type]
             if (date)
-                education_info[type] = utils.getFormattedDate(date)
+                education[type] = utils.getFormattedDate(date)
         })
     })
 
-    _.each(resume.awards, function(award) {
-        var date = award.date
-        award.summary = convertMarkdown(award.summary)
-
+    _.each(resume.awards, award => {
+        let date = award.date
         if (date)
             award.date = utils.getFormattedDate(date, 'MMM DD, YYYY')
+
+        award.summary = markdown(award.summary)
     })
 
-    _.each(resume.volunteer, function(volunteer_info) {
-        volunteer_info.summary = convertMarkdown(volunteer_info.summary)
+    _.each(resume.volunteer, volunteer => {
+        volunteer.summary = markdown(volunteer.summary)
+        volunteer.highlights = _.map(volunteer.highlights, markdown)
 
-        _.each(['startDate', 'endDate'], function (type) {
-            var date = volunteer_info[type]
+        _.each(['startDate', 'endDate'], type => {
+            let date = volunteer[type]
             if (date)
-                volunteer_info[type] = utils.getFormattedDate(date)
-        })
-
-        volunteer_info.highlights = _(volunteer_info.highlights).map(function(highlight) {
-            return convertMarkdown(highlight)
+                volunteer[type] = utils.getFormattedDate(date)
         })
     })
 
-    _.each(resume.publications, function(publication_info) {
-        var date = publication_info.releaseDate
-        publication_info.summary = convertMarkdown(publication_info.summary)
-
+    _.each(resume.publications, publication => {
+        let date = publication.releaseDate
         if (date)
-            publication_info.releaseDate = utils.getFormattedDate(date, 'MMM DD, YYYY')
+            publication.releaseDate = utils.getFormattedDate(date, 'MMM DD, YYYY')
+
+        publication.summary = markdown(publication.summary)
     })
 
-    _.each(resume.references, function(reference_info) {
-        reference_info.reference = convertMarkdown(reference_info.reference)
-    })
+    _.each(resume.references, reference =>
+        reference.reference = markdown(reference.reference))
 
     return pug.renderFile(__dirname + '/index.pug', {
-      nav_items: getFloatingNavItems(resume),
+      nav_items: floatingNavItems(resume),
       resume: resume,
+      static: static,
       css: css,
       _: _
     })
 }
 
+async function numPages(file, height) {
+  let buffer = await file.pdf({width: '1025px', height: height + 'px', printBackground: true})
+  let data = await pdfparse(buffer)
+  return data.numpages
+}
+
+async function pdf(resume) {
+  let browser = await puppeteer.launch()
+  let file = await browser.newPage()
+
+  await file.setContent(html(resume, true), {waitUntil: 'networkidle2'})
+  await file.emulateMedia('screen')
+
+  let high = await numPages(file, 100) * 100
+  let low = await numPages(file, 10) * 10
+
+  while (high > (low+1)) {
+    let mean = Math.round((high + low) / 2)
+    let count = await numPages(file, mean)
+    if (count > 1)
+      low = mean
+    else
+      high = mean
+  }
+
+  let buffer = await file.pdf({width: '1025px', height: high + 'px', printBackground: true})
+  await browser.close()
+  return buffer
+}
+
 module.exports = {
-    render: render
+  render: html,
+  html: html,
+  pdf: pdf
 }
