@@ -6,49 +6,32 @@
 // `node serve`
 //
 
-var fs = require('fs')
-var path = require('path')
-var http = require('http')
-var theme = require('./index.js')
+const fs = require('fs')
+const path = require('path')
+const http = require('http')
+const theme = require('./index.js')
 
-var resume = require('resume-schema').resumeJson
-var port = 8888
+const resume = require('resume-schema').resumeJson
+const port = 8888
 
-http.createServer(function(req, res) {
-    var picture = resume.basics.picture && resume.basics.picture.replace(/^\//, '')
-
-    if (picture && req.url.replace(/^\//, "") === picture.replace(/^.\//, "")) {
-        var format = path.extname(picture);
-        try {
-            var image = fs.readFileSync(picture)
-            res.writeHead(200, {
-                'Content-Type': 'image/' + format
-            })
-            res.end(image, 'binary')
-        } catch (error) {
-            if (error.code === 'ENOENT') {
-                console.log('Picture not found!')
-                res.end()
-            } else {
-                throw error
-            }
-        }
-    } else {
-        res.writeHead(200, {
-            'Content-Type': 'text/html'
-        });
-        res.end(render())
-    }
-}).listen(port)
-
-console.log('Preview: http://localhost:8888/')
-console.log('Serving..')
-
-function render() {
+async function render(func) {
     try {
-        return theme.render(JSON.parse(JSON.stringify(resume)))
+        return await func(resume)
     } catch (e) {
         console.log(e.message)
         return ''
     }
 }
+
+http.createServer(async (req, res) => {
+  if (req.url == '/') {
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    res.end(await render(theme.html))
+  } else if (req.url == '/pdf') {
+    res.writeHead(200, {'Content-Type': 'application/pdf'})
+    res.end(await render(theme.pdf))
+  }
+}).listen(port)
+
+console.log('Preview: http://localhost:8888/')
+console.log('Serving..')

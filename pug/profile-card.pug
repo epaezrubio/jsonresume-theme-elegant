@@ -14,7 +14,7 @@ mixin social_links(profiles)
     a.social-link(title=resume.basics.name + " on " + profile.network, href=profile.url, target="_blank", data-toggle="tooltip")
       svg.icon(class="icon-" + profile.label, title='')
         use(xlink:href="#icon-" + profile.label)
-      span.info.printing=profile.url
+      span.info.print=profile.url
 
 section.col-md-3.card-wrapper.profile-card-wrapper.affix
   .card.profile-card
@@ -62,4 +62,4 @@ section.col-md-3.card-wrapper.profile-card-wrapper.affix
           #remaining-profiles.collapse.text-left
             +social_links(resume.basics.remaining_profiles)
 
-    hr.printing
+    hr.print
