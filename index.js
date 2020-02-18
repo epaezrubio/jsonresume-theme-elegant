@@ -1,5 +1,5 @@
 const markdownit = require('markdown-it')({breaks: true}).use(require('markdown-it-abbr'))
-const moment = require('./moment-precise-range')
+const moment = require('./lib/moment-precise-range')
 const utils = require('jsonresume-themeutils')
 const puppeteer = require('puppeteer')
 const pdfparse = require('pdf-parse')
@@ -144,7 +144,8 @@ function html(resume, static) {
     _.each(resume.references, reference =>
         reference.reference = markdown(reference.reference))
 
-    return pug.renderFile(__dirname + '/index.pug', {
+    return pug.renderFile(__dirname + '/pug/index.pug', {
+      basedir: __dirname,
       nav_items: floatingNavItems(resume),
       resume: resume,
       static: static,
