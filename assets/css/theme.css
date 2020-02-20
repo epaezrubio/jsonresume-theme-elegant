@@ -252,6 +252,18 @@ svg {
     padding-left: 25px;
   }
 }
+.date,
+.location {
+  padding-top: 2px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.inline-icon {
+  display: inline-block !important;
+  padding: 0 5px 0 0 !important;
+  margin-top: 2px !important;
+  min-width: auto !important;
+}
 .current-event {
   font-size: 8px;
   color: #5ACE24 !important;

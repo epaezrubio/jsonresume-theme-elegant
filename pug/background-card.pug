@@ -1,22 +1,33 @@
-mixin large_icon(id, title)
-  .icon
-    svg.fs-lg(class="icon-" + id)
+mixin icon(id, title, cls, root_cls)
+  .icon(class=root_cls)
+    svg(class=cls + " icon-" + id)
       use(xlink:href="#icon-" + id)
     span.mobile-title
       |#{title}
 
-mixin timed_event_title(title, ongoing, ongoing_title)
-  if ongoing
-    svg.icon-circle.current-event
-      use(xlink:href="#icon-circle")
 
-    strong(
-      title=ongoing_title,
-      data-toggle="tooltip",
-      data-placement="bottom"
-    )= title
-  else
-    strong= title
+mixin inline_icon(id, title)
+  +icon(id, title, 'fs-sm', 'inline-icon')
+
+mixin large_icon(id, title)
+  +icon(id, title, 'fs-lg')
+
+mixin timed_event_title(title, ongoing, ongoing_title)
+  strong= title
+
+mixin location(location)
+  if location
+    .location.text-muted
+      +inline_icon('location', 'Location')
+      span #{location}
+
+mixin date(startDate, endDate)
+  if startDate || endDate
+    .date.text-muted
+      +inline_icon('calendar', 'Date')
+      if startDate
+        |#{startDate} -
+      |#{endDate || 'Present'}
 
 section.col-md-9.card-wrapper.pull-right
   .card.background-card
