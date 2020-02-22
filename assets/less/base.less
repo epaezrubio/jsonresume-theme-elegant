@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    page-break-after: auto;
 }
 
 html, body {
@@ -18,9 +19,26 @@ svg {
   pointer-events: none;
 }
 
-.main {
-    padding: 5px;
+.section {
+    &-title {
+        padding-bottom: .5em;
+        border-bottom: 2px solid black;
+    }
 }
+
+h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+h1 {
+    letter-spacing: 0.25em;
+}
+
+h2 {
+    font-weight: normal;
+}
+
 
 .card {
     background: @card-bg;
@@ -38,6 +56,7 @@ svg {
         padding: 5px 0;
     }
 }
+
 
 .background-card {
     padding: 20px 20px 10px 20px;

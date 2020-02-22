@@ -1,0 +1,48 @@
+mixin profile_card_detail(icon, info, itemprop, icon_title)
+  .info-detail
+    +icon(icon, 'lg', icon_title)
+    span
+      if block
+        block
+      else
+        |#{info}
+
+mixin social_links(profiles)
+  each profile in profiles
+    a.social-link(title=resume.basics.name + " on " + profile.network, href=profile.url, target="_blank", data-toggle="tooltip")
+      svg.icon(class="icon-" + profile.label, title='')
+        use(xlink:href="#icon-" + profile.label)
+      span.info.print=profile.url
+
+section.container-grid-item.info
+  .contact-details.section
+    h3.section-title Info
+    if resume.basics.computed_location
+      +profile_card_detail("location", resume.basics.computed_location)
+    if resume.basics.phone
+      +profile_card_detail("phone", resume.basics.phone, "telephone")
+    if resume.basics.email
+      +profile_card_detail("mail")
+        a.link-disguise(href="mailto:" + resume.basics.email, itemprop="email")= resume.basics.email
+    if resume.basics.website
+      +profile_card_detail("link")
+        a(href=resume.basics.website, target="_blank")= resume.basics.website
+    if resume.basics.languages
+      +profile_card_detail('language', resume.basics.languages, null, 'Languages I speak')
+
+  .social-links.section
+    h3.section-title Links
+    div
+      +social_links(resume.basics.top_five_profiles)
+
+      if resume.basics.remaining_profiles.length > 0
+        button.btn.btn-default.btn-sm.btn-circle-sm.pull-right.js-profiles-collapse(
+          data-toggle="collapse",
+          data-target="#remaining-profiles")
+          svg.fs-lg(class="icon-chevron-down")
+            use(xlink:href="#icon-chevron-down")
+
+        #remaining-profiles.collapse.text-left
+          +social_links(resume.basics.remaining_profiles)
+
+  hr.print

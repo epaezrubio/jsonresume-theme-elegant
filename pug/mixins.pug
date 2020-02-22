@@ -1,0 +1,4 @@
+mixin icon(icon, size, title)
+    span.icon(title=title)
+        svg(class="icon-" + icon + " fs-" + size)
+            use(xlink:href="#icon-" + icon)

@@ -1,3 +1,5 @@
+include mixins
+
 |<!DOCTYPE html>
 html(lang="en")
   head
@@ -11,8 +13,11 @@ html(lang="en")
     include /assets/icomoon/symbol-defs.svg
 
     .container
-      include floating-nav.pug
-      include profile-card.pug
-      include background-card.pug
+      .header
+        include blocks/profile.pug
+
+      .container-grid
+        include blocks/info.pug
+        include blocks/background.pug
 
     include scripts.pug
