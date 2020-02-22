@@ -1,17 +1,3 @@
-mixin icon(id, title, cls, root_cls)
-  .icon(class=root_cls)
-    svg(class=cls + " icon-" + id)
-      use(xlink:href="#icon-" + id)
-    span.mobile-title
-      |#{title}
-
-
-mixin inline_icon(id, title)
-  +icon(id, title, 'fs-sm', 'inline-icon')
-
-mixin large_icon(id, title)
-  +icon(id, title, 'fs-lg')
-
 mixin timed_event_title(title, ongoing, ongoing_title)
   strong= title
 
@@ -41,7 +27,6 @@ section.background.container-grid-item
           include ../background/references.pug
           include ../background/work-experience.pug
           include ../background/volunteer-work.pug
-          include ../background/skills.pug
           include ../background/interests.pug
         default
           include ../background/about.pug
@@ -51,5 +36,4 @@ section.background.container-grid-item
           include ../background/awards.pug
           include ../background/education.pug
           include ../background/references.pug
-          include ../background/skills.pug
           include ../background/interests.pug

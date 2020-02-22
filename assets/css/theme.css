@@ -60,6 +60,12 @@ svg {
   padding-bottom: 0.5em;
   border-bottom: 2px solid black;
 }
+h1 {
+  letter-spacing: 0.25em;
+}
+h2 {
+  font-weight: normal;
+}
 h1,
 h2,
 h3,
@@ -68,19 +74,8 @@ h5,
 h6 {
   text-transform: uppercase;
   letter-spacing: 0.15em;
-}
-h1 {
-  letter-spacing: 0.25em;
-}
-h2 {
-  font-weight: normal;
-}
-.card {
-  background: white;
-  border: 1px solid #e6e6e6;
-  border-radius: 3px;
-  min-height: 300px;
-  padding: 10px 0;
+  margin: 0.75em 0;
+  padding: 0.75em 0;
 }
 .card-nested {
   min-height: 0;
@@ -91,65 +86,12 @@ h2 {
     padding: 5px 0;
   }
 }
-.background-card {
-  padding: 20px 20px 10px 20px;
-}
 .card-wrapper {
   padding: 5px;
 }
 @media (max-width: 1024px) {
   .card-wrapper {
     float: none !important;
-  }
-}
-.background-details .detail {
-  display: table;
-}
-.background-details .detail .icon {
-  min-width: 45px;
-  max-width: 45px;
-  text-align: center;
-}
-.background-details .detail .info {
-  width: 100%;
-}
-.background-details .detail .title,
-.background-details .detail .icon * {
-  color: #707070 !important;
-}
-.background-details .detail .mobile-title {
-  display: none;
-}
-@media (max-width: 480px) {
-  .background-details .detail .mobile-title {
-    display: inline-block;
-    margin-left: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    vertical-align: middle;
-  }
-}
-.background-details .detail .icon,
-.background-details .detail .info {
-  display: table-cell;
-  padding: 0 10px;
-}
-@media (max-width: 480px) {
-  .background-details .detail {
-    display: block;
-  }
-  .background-details .detail .icon {
-    max-width: inherit;
-    min-width: inherit;
-    text-align: left;
-  }
-  .background-details .detail .icon,
-  .background-details .detail .info {
-    display: block;
-    padding: 10px 0;
-  }
-  .background-details .detail .title {
-    display: none;
   }
 }
 .info .content.has-sidebar {
@@ -213,6 +155,12 @@ h2 {
 .mop-wrapper > p:last-child {
   margin: 0;
 }
+@media print {
+  .container {
+    margin-left: -3em;
+    margin-right: -3em;
+  }
+}
 .container-grid {
   display: flex;
 }
@@ -229,6 +177,9 @@ h2 {
   flex-direction: column;
   align-items: center;
 }
+.icon {
+  margin-top: px;
+}
 .info {
   background-color: #eee;
   padding-left: 3em;
@@ -236,6 +187,15 @@ h2 {
 }
 .info-detail {
   display: flex;
+  align-items: center;
+  padding: 0.5em 0;
+}
+.info-detail .icon {
+  flex: 0 1 auto;
+  margin-right: 0.75em;
+}
+.info-detail-content {
+  flex: 1;
 }
 .profile {
   border: 3px solid black;
@@ -247,8 +207,16 @@ h2 {
   flex-direction: column;
   justify-content: center;
 }
+.profile h1,
+.profile h2 {
+  margin: 0;
+}
 .profile-data {
   text-align: center;
+}
+.background {
+  padding-left: 3em;
+  padding-right: 3em;
 }
 .card-skills {
   position: relative;

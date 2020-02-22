@@ -1,4 +1,15 @@
 mixin icon(icon, size, title)
-    span.icon(title=title)
-        svg(class="icon-" + icon + " fs-" + size)
-            use(xlink:href="#icon-" + icon)
+    svg(class="icon icon-" + icon + " fs-" + size, title=title)
+        use(xlink:href="#icon-" + icon)
+
+mixin inline_icon(icon, title)
+  +icon(icon, 'sm', title)
+
+mixin large_icon(icon, title)
+  +icon(icon, 'lg', title)
+
+mixin section(title)
+    section.section(class=attributes.class)
+        h3.section-title=title
+        .section-content
+            block

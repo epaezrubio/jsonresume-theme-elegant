@@ -1,22 +1,14 @@
 mixin profile_card_detail(icon, info, itemprop, icon_title)
   .info-detail
     +icon(icon, 'lg', icon_title)
-    span
-      if block
-        block
-      else
+    if block
+      block
+    else
+      .info-detail-content
         |#{info}
 
-mixin social_links(profiles)
-  each profile in profiles
-    a.social-link(title=resume.basics.name + " on " + profile.network, href=profile.url, target="_blank", data-toggle="tooltip")
-      svg.icon(class="icon-" + profile.label, title='')
-        use(xlink:href="#icon-" + profile.label)
-      span.info.print=profile.url
-
-section.container-grid-item.info
-  .contact-details.section
-    h3.section-title Info
+.container-grid-item.info
+  +section('Info').contact-details
     if resume.basics.computed_location
       +profile_card_detail("location", resume.basics.computed_location)
     if resume.basics.phone
@@ -30,19 +22,27 @@ section.container-grid-item.info
     if resume.basics.languages
       +profile_card_detail('language', resume.basics.languages, null, 'Languages I speak')
 
-  .social-links.section
-    h3.section-title Links
-    div
-      +social_links(resume.basics.top_five_profiles)
+  unless _.isEmpty(resume.basics.top_five_profiles)
+    +section('Links').social-links
+      each profile in resume.basics.top_five_profiles
+        +profile_card_detail(profile.label, 'lg', profile.label)
+          a.social-link(title=resume.basics.name + " on " + profile.network, href=profile.url, target="_blank")=profile.username
 
-      if resume.basics.remaining_profiles.length > 0
-        button.btn.btn-default.btn-sm.btn-circle-sm.pull-right.js-profiles-collapse(
-          data-toggle="collapse",
-          data-target="#remaining-profiles")
-          svg.fs-lg(class="icon-chevron-down")
-            use(xlink:href="#icon-chevron-down")
+  unless _.isEmpty(resume.skills)
+    +section('Skills').skills
+      ul.list-unstyled.clear-margin
+        each skill in resume.skills
+          li.card.card-nested.card-skills
+            if skill.display_progress_bar
+              .skill-level(data-toggle="tooltip", title=skill.level, data-placement="left")
+                .skill-progress(class=skill.class)
 
-        #remaining-profiles.collapse.text-left
-          +social_links(resume.basics.remaining_profiles)
+            div(class = skill.display_progress_bar && "skill-graded-info" || "")
+              strong= skill.name
+              if skill.subtitle
+                |&nbsp;(#{skill.subtitle})
 
-  hr.print
+              unless _.isEmpty(skill.keywords)
+                .space-top.labels
+                  each keyword in skill.keywords
+                    span.label.label-keyword= keyword

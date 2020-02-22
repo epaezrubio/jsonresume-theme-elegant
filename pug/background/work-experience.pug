@@ -1,55 +1,50 @@
 unless _.isEmpty(resume.work)
-  .detail#work-experience
-    +large_icon('office', 'Work Experience')
-    div
-      h4.title.text-uppercase Work Experience
+  +section('Work Experience').work-experience
+    ul.list-unstyled.clear-margin
+      each experience in resume.work
+        li.card.card-nested.flex
+          .content.has-sidebar
+            p.clear-margin.relative
+              +timed_event_title(experience.position, !experience.endDate, 'Currently Working Here')
+              |,&nbsp;
+              if experience.website
+                a(href=experience.website, target="_blank")= experience.company
+              else
+                |#{experience.company}
 
-      .content
-        ul.list-unstyled.clear-margin
-          each experience in resume.work
-            li.card.card-nested.flex
-              .content.has-sidebar
-                p.clear-margin.relative
-                  +timed_event_title(experience.position, !experience.endDate, 'Currently Working Here')
-                  |,&nbsp;
-                  if experience.website
-                    a(href=experience.website, target="_blank")= experience.company
-                  else
-                    |#{experience.company}
+            +location(experience.location)
 
-                +location(experience.location)
-
-                p.text-muted
-                  small
-                    span.space-right
-                      |#{experience.startDate} - #{experience.endDate || 'Present'}
-
-                    if experience.duration
-                      span
-                        svg.icon-clock.mr-5
-                          use(xlink:href="#icon-clock")
-                        |#{experience.duration}
-
-                .mop-wrapper.space-bottom!= experience.summary
-
-                unless _.isEmpty(experience.highlights)
-                  ul
-                    each highlight in experience.highlights
-                      li.mop-wrapper!= highlight
-              .sidebar.text-muted.text-center
-                p
-                  strong= 'Joined:'
-                  |&nbsp;#{experience.startDate}
-
-                p
-                  if experience.endDate
-                    strong= 'Left:'
-                    |&nbsp;#{experience.endDate}
-                  else
-                    strong= 'Currently Here'
+            p.text-muted
+              small
+                span.space-right
+                  |#{experience.startDate} - #{experience.endDate || 'Present'}
 
                 if experience.duration
-                  p
+                  span
                     svg.icon-clock.mr-5
                       use(xlink:href="#icon-clock")
                     |#{experience.duration}
+
+            .mop-wrapper.space-bottom!= experience.summary
+
+            unless _.isEmpty(experience.highlights)
+              ul
+                each highlight in experience.highlights
+                  li.mop-wrapper!= highlight
+          .sidebar.text-muted.text-center
+            p
+              strong= 'Joined:'
+              |&nbsp;#{experience.startDate}
+
+            p
+              if experience.endDate
+                strong= 'Left:'
+                |&nbsp;#{experience.endDate}
+              else
+                strong= 'Currently Here'
+
+            if experience.duration
+              p
+                svg.icon-clock.mr-5
+                  use(xlink:href="#icon-clock")
+                |#{experience.duration}

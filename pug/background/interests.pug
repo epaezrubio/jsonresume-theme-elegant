@@ -1,17 +1,12 @@
 unless _.isEmpty(resume.interests)
-  .detail#interests
-    +large_icon('heart', 'Interests')
-    div
-      h4.title.text-uppercase Interests
+  +section('Interests').interests
+    ul.list-unstyled.clear-margin
+      each interest in resume.interests
+        li.card.card-nested
+          p
+            strong= interest.name
 
-      .content
-        ul.list-unstyled.clear-margin
-          each interest in resume.interests
-            li.card.card-nested
-              p
-                strong= interest.name
-
-              unless _.isEmpty(interest.keywords)
-                .space-top.labels
-                  each keyword in interest.keywords
-                    span.label.label-keyword= keyword
+          unless _.isEmpty(interest.keywords)
+            .space-top.labels
+              each keyword in interest.keywords
+                span.label.label-keyword= keyword
