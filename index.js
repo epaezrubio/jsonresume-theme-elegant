@@ -100,8 +100,6 @@ function html(resume, static) {
         if (skill.type)
             skill.subtitle = skill.type.toLowerCase()
         if (skill.level) {
-            skill.class = skill.level.toLowerCase()
-            skill.level = capitalize(skill.level.trim())
             skill.display_progress_bar = _.includes(levels, skill.level)
         }
     })

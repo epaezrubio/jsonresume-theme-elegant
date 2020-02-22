@@ -77,6 +77,14 @@ h6 {
   margin: 0.75em 0;
   padding: 0.75em 0;
 }
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
 .card-nested {
   min-height: 0;
   border-width: 1px 0 0 0;
@@ -197,6 +205,23 @@ h6 {
 .info-detail-content {
   flex: 1;
 }
+.skill {
+  margin-bottom: 0.75em;
+}
+.skill-name {
+  margin-bottom: 0.25em;
+}
+.skill-level-badge {
+  width: 0.75em;
+  height: 0.75em;
+  margin-right: 0.5em;
+  border: 2px solid black;
+  border-radius: 99999px;
+  display: inline-block;
+}
+.skill-level-badge.filled {
+  background: black;
+}
 .profile {
   border: 3px solid black;
   background: #fefefe;
@@ -217,49 +242,6 @@ h6 {
 .background {
   padding-left: 3em;
   padding-right: 3em;
-}
-.card-skills {
-  position: relative;
-}
-.skill-level {
-  border-radius: 3px;
-  position: absolute;
-  top: 10px;
-  bottom: 10px;
-  left: 0;
-  width: 10px;
-  box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.2);
-}
-.skill-level .skill-progress {
-  position: absolute;
-  border-radius: 3px;
-  bottom: 0;
-  width: 100%;
-  -webkit-transition: height 1s ease;
-}
-.skill-level .skill-progress.beginner {
-  height: 50%;
-  background: #e74c3c !important;
-}
-.skill-level .skill-progress.intermediate {
-  height: 70%;
-  background: #f1c40f !important;
-}
-.skill-level .skill-progress.advanced {
-  height: 80%;
-  background: #428bca !important;
-}
-.skill-level .skill-progress.master {
-  height: 95%;
-  background: #5cb85c !important;
-}
-.skill-graded-info {
-  margin-left: 15px;
-}
-@media (max-width: 480px) {
-  .skill-graded-info {
-    margin-left: 20px;
-  }
 }
 @media (max-width: 840px) {
   .quote {
