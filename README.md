@@ -1,10 +1,9 @@
-# Jali Elegant Theme
-[![](https://img.shields.io/npm/v/jsonresume-theme-elegant.svg)](https://www.npmjs.com/package/jsonresume-theme-elegant) [![](https://travis-ci.org/Jaliborc/jsonresume-theme-elegant.svg)](https://travis-ci.org/Jaliborc/jsonresume-theme-elegant/) ![](https://david-dm.org/jaliborc/jsonresume-theme-elegant.svg) ![](https://img.shields.io/npm/l/jsonresume-theme-elegant.svg)
+# Epr Elegant Theme
 
 
 Personal modification of the [Elegant](https://github.com/mudassir0909/jsonresume-theme-elegant) responsive theme for [JsonResume](https://jsonresume.org/) by Mudassir Ali.
 
-[Theme Preview](http://jaliborc.com/resume)
+[Theme Preview](https://devpaezrubio.com/resume)
 
 ## Highlights
 * Added command line interface
@@ -20,10 +19,10 @@ Personal modification of the [Elegant](https://github.com/mudassir0909/jsonresum
 * Added continuous integration (*using Travis CI*)
 
 ## Command Line Interface
-Jali Elegent Theme provides a basic command line tool as well. This will render the given .json file into the given file name on the same directory:
+Epr Elegant Theme provides a basic command line tool as well. This will render the given .json file into the given file name on the same directory:
 
-    jaliresume myfolder/myresume.json outputname.html
-    jaliresume myfolder/myresume.json outputname.pdf
+    eprresume myfolder/myresume.json outputname.html
+    eprresume myfolder/myresume.json outputname.pdf
 
 Both input path and output name are optional parameters.
 

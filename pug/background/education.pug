@@ -10,13 +10,16 @@ unless _.isEmpty(resume.education)
             li.card.card-nested
               .content
                 p.clear-margin.relative
-                  +timed_event_title(education_info.area + ', ' + education_info.studyType + ', ', !education_info.endDate, 'Currently Pursuing')
+                  +timed_event_title(
+                     (_.isEmpty(education_info.area) ? '' : (education_info.area + ', ')) +
+                     (_.isEmpty(education_info.studyType) ? '' : (education_info.studyType + ', ')),
+                    !education_info.endDate, 'Currently Pursuing')
                   |#{education_info.institution}
 
-                p.text-muted(class=!education_info.gpa && _.isEmpty(education_info.courses) ? 'clear-margin' : '')
-                  small
-                    |#{education_info.startDate} - #{education_info.endDate || 'Present'}
-                i= education_info.gpa
+                +date(education_info.startDate, education_info.endDate)
+                +location(education_info.location)
+
+                p= education_info.gpa
 
                 unless _.isEmpty(education_info.courses)
                   .space-top.labels

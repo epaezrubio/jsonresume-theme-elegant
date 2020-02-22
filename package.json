@@ -1,5 +1,5 @@
 {
-  "name": "jsonresume-theme-elegant-jali",
+  "name": "jsonresume-theme-elegant-epr",
   "version": "1.2.0",
   "description": "Modification of elegant theme for jsonresume",
   "main": "index.js",
@@ -7,24 +7,24 @@
     "test": "jshint serve.js | jshint render.js | node render | node render node_modules/resume-schema/resume.json"
   },
   "bin": {
-    "jaliresume": "render.js",
-    "jalielegant": "render.js"
+    "eprresume": "render.js",
+    "eprelegant": "render.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaliborc/jsonresume-theme-elegant.git"
+    "url": "https://github.com/epaezrubio/jsonresume-theme-elegant"
   },
   "keywords": [
     "jsonresume",
     "theme",
     "elegant"
   ],
-  "author": "Joao Cardoso <jaliborcpublic@gmail.com>",
+  "author": "Eduardo Paez Rubio <contact@devpaezrubio.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jaliborc/jsonresume-theme-elegant/issues"
+    "url": "https://github.com/epaezrubio/jsonresume-theme-elegant/issues"
   },
-  "homepage": "https://github.com/jaliborc/jsonresume-theme-elegant",
+  "homepage": "https://github.com/epaezrubio/jsonresume-theme-elegant",
   "dependencies": {
     "chalk": "^2.4.1",
     "jsonresume-themeutils": "^1.4.3",

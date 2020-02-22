@@ -5,15 +5,15 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title= resume.basics.name
-    include pug/stylesheets.pug
+    include stylesheets.pug
 
   body(itemscope, itemtype="http://schema.org/Person", class=static && 'static' || '')
-    include assets/icomoon/symbol-defs.svg
+    include /assets/icomoon/symbol-defs.svg
 
     .container-fluid
       .row.main.clearfix
-        include pug/floating-nav.pug
-        include pug/profile-card.pug
-        include pug/background-card.pug
+        include floating-nav.pug
+        include profile-card.pug
+        include background-card.pug
 
-    include pug/scripts.pug
+    include scripts.pug

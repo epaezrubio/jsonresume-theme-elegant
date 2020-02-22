@@ -6,17 +6,17 @@
 // `node serve`
 //
 
-const fs = require('fs')
-const path = require('path')
 const http = require('http')
 const theme = require('./index.js')
 
-const resume = require('resume-schema').resumeJson
-const port = 8888
+const port = process.env.PORT || 8889
+const resumePath = process.env.RESUME_PATH || 'resume-schema/resume.json'
+
+const resume = require(resumePath)
 
 async function render(func) {
     try {
-        return await func(resume)
+        return await func(JSON.parse(JSON.stringify(resume)))
     } catch (e) {
         console.log(e.message)
         return ''
@@ -33,5 +33,5 @@ http.createServer(async (req, res) => {
   }
 }).listen(port)
 
-console.log('Preview: http://localhost:8888/')
+console.log(`Preview: http://localhost:${port}/`)
 console.log('Serving..')
