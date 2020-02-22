@@ -10,10 +10,9 @@ html(lang="en")
   body(itemscope, itemtype="http://schema.org/Person", class=static && 'static' || '')
     include /assets/icomoon/symbol-defs.svg
 
-    .container-fluid
-      .row.main.clearfix
-        include floating-nav.pug
-        include profile-card.pug
-        include background-card.pug
+    .container
+      include floating-nav.pug
+      include profile-card.pug
+      include background-card.pug
 
     include scripts.pug
