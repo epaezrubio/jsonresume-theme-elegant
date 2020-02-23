@@ -10,7 +10,7 @@ html, body {
 
 body {
     font-family: 'Lato';
-    background: @theme-bg;
+    background: linear-gradient(90deg, @theme-secondary-bg 0%, @theme-secondary-bg 50%, @theme-bg 50%, @theme-bg 100%);
     color: @theme-font-color;
     font-size: 16px;
 }
@@ -54,6 +54,16 @@ li {
 ul {
     @media (max-width: @screen-phone) {
         padding-left: 25px;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid black;
+
+    &:visited {
+        color: inherit;
     }
 }
 

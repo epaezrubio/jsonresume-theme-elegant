@@ -1,4 +1,38 @@
 .background {
     padding-left: 3em;
     padding-right: 3em;
+    background: @theme-bg;
+}
+
+.event {
+    margin-bottom: 1.75em;
+
+    &__header {
+        display: flex;
+        flex-flow: wrap;
+        padding-bottom: .75em;
+    }
+
+    &__title {
+        flex: 1;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    &__period {
+        flex-basis: 100%;
+    }
+
+    &__location {
+        text-align: right;
+    }
+
+    &__highlights {
+        padding-top: .75em;
+        padding-left: 1em;
+    }
+
+    &__highlight {
+        list-style-type: square;
+    }
 }

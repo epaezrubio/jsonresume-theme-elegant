@@ -1,7 +1,14 @@
 .container {
+    position: relative;
+    margin: 0 auto;
+
     @media print {
         margin-left: -3em;
         margin-right: -3em;
+    }
+
+    @media screen {
+        max-width: 1200px;
     }
 }
 
@@ -10,6 +17,7 @@
 
     &__item {
         padding-top: @header-size;
+        padding-bottom: 3em;
     }
 }
 

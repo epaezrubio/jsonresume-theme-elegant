@@ -22,7 +22,7 @@ function capitalize(str) {
 }
 
 function markdown(str) {
-    return str != null && markdownit.render(str) || null
+    return str != null && markdownit.renderInline(str) || null
 }
 
 function floatingNavItems(resume) {

@@ -49,7 +49,7 @@ body {
 }
 body {
   font-family: 'Lato';
-  background: #fefefe;
+  background: linear-gradient(90deg, #eee 0%, #eee 50%, #fefefe 50%, #fefefe 100%);
   color: #333;
   font-size: 16px;
 }
@@ -90,11 +90,23 @@ li {
     padding-left: 25px;
   }
 }
+a {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid black;
+}
+a:visited {
+  color: inherit;
+}
 .date,
 .location {
   padding-top: 2px;
   display: inline-block;
   margin-right: 10px;
+}
+.container {
+  position: relative;
+  margin: 0 auto;
 }
 @media print {
   .container {
@@ -102,11 +114,17 @@ li {
     margin-right: -3em;
   }
 }
+@media screen {
+  .container {
+    max-width: 1200px;
+  }
+}
 .grid {
   display: flex;
 }
 .grid__item {
   padding-top: 20rem;
+  padding-bottom: 3em;
 }
 .header {
   position: absolute;
@@ -176,6 +194,33 @@ li {
 .background {
   padding-left: 3em;
   padding-right: 3em;
+  background: #fefefe;
+}
+.event {
+  margin-bottom: 1.75em;
+}
+.event__header {
+  display: flex;
+  flex-flow: wrap;
+  padding-bottom: 0.75em;
+}
+.event__title {
+  flex: 1;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.event__period {
+  flex-basis: 100%;
+}
+.event__location {
+  text-align: right;
+}
+.event__highlights {
+  padding-top: 0.75em;
+  padding-left: 1em;
+}
+.event__highlight {
+  list-style-type: square;
 }
 @media (max-width: 840px) {
   .quote {
