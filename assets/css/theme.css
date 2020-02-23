@@ -56,7 +56,7 @@ body {
 svg {
   pointer-events: none;
 }
-.section-title {
+.section__title {
   padding-bottom: 0.5em;
   border-bottom: 2px solid black;
 }
@@ -85,56 +85,6 @@ li {
 li {
   list-style-type: none;
 }
-.card-nested {
-  min-height: 0;
-  border-width: 1px 0 0 0;
-}
-@media (max-width: 480px) {
-  .card-nested {
-    padding: 5px 0;
-  }
-}
-.card-wrapper {
-  padding: 5px;
-}
-@media (max-width: 1024px) {
-  .card-wrapper {
-    float: none !important;
-  }
-}
-.info .content.has-sidebar {
-  box-sizing: border-box;
-  padding-right: 20px;
-  border-right: 1px solid #cdcdcd;
-  flex: 80%;
-}
-.info .content.has-sidebar small {
-  display: none;
-}
-@media (max-width: 1024px) {
-  .info .content.has-sidebar {
-    border-right: 0;
-  }
-  .info .content.has-sidebar small {
-    display: block;
-  }
-}
-@media (max-width: 480px) {
-  .info .content.has-sidebar {
-    padding: 0 2px;
-  }
-}
-.info .sidebar {
-  flex: 20%;
-  box-sizing: border-box;
-  padding: 10px;
-  white-space: nowrap;
-}
-@media (max-width: 1024px) {
-  .info .sidebar {
-    display: none;
-  }
-}
 @media (max-width: 480px) {
   ul {
     padding-left: 25px;
@@ -146,33 +96,16 @@ li {
   display: inline-block;
   margin-right: 10px;
 }
-.inline-icon {
-  display: inline-block !important;
-  padding: 0 5px 0 0 !important;
-  margin-top: 2px !important;
-  min-width: auto !important;
-}
-.current-event {
-  font-size: 8px;
-  color: #5ACE24 !important;
-  position: absolute;
-  right: 100%;
-  top: 6px;
-  left: -12px;
-}
-.mop-wrapper > p:last-child {
-  margin: 0;
-}
 @media print {
   .container {
     margin-left: -3em;
     margin-right: -3em;
   }
 }
-.container-grid {
+.grid {
   display: flex;
 }
-.container-grid-item {
+.grid__item {
   padding-top: 20rem;
 }
 .header {
@@ -193,25 +126,26 @@ li {
   padding-left: 3em;
   padding-right: 3em;
 }
-.info-detail {
+.info__row {
   display: flex;
   align-items: center;
   padding: 0.5em 0;
 }
-.info-detail .icon {
-  flex: 0 1 auto;
+.info__row .icon {
+  flex: 0;
+  min-width: 16px;
   margin-right: 0.75em;
 }
-.info-detail-content {
+.info__content {
   flex: 1;
 }
 .skill {
   margin-bottom: 0.75em;
 }
-.skill-name {
+.skill__name {
   margin-bottom: 0.25em;
 }
-.skill-level-badge {
+.skill__badge {
   width: 0.75em;
   height: 0.75em;
   margin-right: 0.5em;
@@ -219,7 +153,7 @@ li {
   border-radius: 99999px;
   display: inline-block;
 }
-.skill-level-badge.filled {
+.skill__badge--filled {
   background: black;
 }
 .profile {
@@ -236,7 +170,7 @@ li {
 .profile h2 {
   margin: 0;
 }
-.profile-data {
+.profile__data {
   text-align: center;
 }
 .background {

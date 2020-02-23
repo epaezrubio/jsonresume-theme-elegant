@@ -1,13 +1,13 @@
 mixin profile_card_detail(icon, info, itemprop, icon_title)
-  .info-detail
+  .info__row
     +icon(icon, 'lg', icon_title)
     if block
       block
     else
-      .info-detail-content
+      .info__content
         |#{info}
 
-.container-grid-item.info
+.grid__item.info
   +section('Info').contact-details
     if resume.basics.computed_location
       +profile_card_detail("location", resume.basics.computed_location)
@@ -32,10 +32,10 @@ mixin profile_card_detail(icon, info, itemprop, icon_title)
     +section('Skills').skills
       each skill in resume.skills
         .skill
-          .skill-name= skill.name
-          .skill-level
+          .skill__name= skill.name
+          .skill__level
             each i in [1, 2, 3, 4, 5]
-              .skill-level-badge(class=skill.level >= i ? "filled": "")
+              .skill__badge(class=skill.level >= i ? "skill__badge--filled": "")
 
 
 

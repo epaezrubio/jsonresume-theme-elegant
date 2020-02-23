@@ -20,7 +20,7 @@ svg {
 }
 
 .section {
-    &-title {
+    &__title {
         padding-bottom: .5em;
         border-bottom: 2px solid black;
     }
@@ -50,66 +50,6 @@ li {
     list-style-type: none;
 }
 
-// .card {
-//     background: @card-bg;
-//     border: 1px solid @card-border-color;
-//     border-radius: @card-border-radius;
-//     min-height: 300px;
-//     padding: 10px 0;
-// }
-
-.card-nested {
-    min-height: 0;
-    border-width: 1px 0 0 0;
-
-    @media (max-width: @screen-phone) {
-        padding: 5px 0;
-    }
-}
-
-.card-wrapper {
-    padding: 5px;
-
-    @media (max-width: @screen-desktop) {
-        float: none !important;
-    }
-}
-
-
-.info {
-    .content.has-sidebar {
-        box-sizing: border-box;
-        padding-right: 20px;
-        border-right: 1px solid darken(@card-border-color, 10%);
-        flex: 80%;
-
-        small {
-          display: none;
-        }
-
-        @media (max-width: @screen-desktop) {
-            border-right: 0;
-
-            small {
-              display: block;
-            }
-        }
-        @media (max-width: @screen-phone) {
-            padding: 0 2px;
-        }
-    }
-
-    .sidebar {
-        flex: 20%;
-        box-sizing: border-box;
-        padding: 10px;
-        white-space:nowrap;
-
-        @media (max-width: @screen-desktop) {
-            display: none;
-        }
-    }
-}
 
 ul {
     @media (max-width: @screen-phone) {
@@ -121,28 +61,4 @@ ul {
     padding-top: 2px;
     display: inline-block;
     margin-right: 10px;
-}
-
-.inline-icon {
-    display: inline-block !important;
-    padding: 0 5px 0 0 !important;
-    margin-top: 2px !important;
-    min-width: auto !important;
-}
-
-.current-event {
-    font-size: 8px;
-    color: #5ACE24 !important;
-    position: absolute;
-    right: 100%;
-    top: 6px;
-    left: -12px;
-}
-
-.mop-wrapper { //mardown output wrapper
-    > p { // markdown outputs the result wrapped in a <p> tag, bootstrap has default margin for this tag, so negating it
-        &:last-child {
-            margin: 0;
-        }
-    }
 }
