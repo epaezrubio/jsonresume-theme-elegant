@@ -8,6 +8,11 @@ mixin inline_icon(icon, title)
 mixin large_icon(icon, title)
   +icon(icon, 'lg', title)
 
+mixin join(elements, separator)
+  - let result = elements.filter(el => !!el).join(separator || ', ')
+
+  |#{result}
+
 mixin section(title)
     section.section(class=attributes.class)
         h3.section__title=title
