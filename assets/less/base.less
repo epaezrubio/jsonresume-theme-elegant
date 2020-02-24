@@ -1,136 +1,55 @@
+* {
+    box-sizing: border-box;
+    page-break-after: auto;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Lato';
-    background: @theme-bg;
+    background: linear-gradient(90deg, @theme-secondary-bg 0%, @theme-secondary-bg 50%, @theme-bg 50%, @theme-bg 100%);
     color: @theme-font-color;
+    font-size: 16px;
 }
 
 svg {
   pointer-events: none;
 }
 
-.main {
-    padding: 5px;
-}
-
-.card {
-    background: @card-bg;
-    border: 1px solid @card-border-color;
-    border-radius: @card-border-radius;
-    min-height: 300px;
-    padding: 10px 0;
-}
-
-.card-nested {
-    .clearfix();
-    min-height: 0;
-    border-width: 1px 0 0 0;
-
-    @media (max-width: @screen-phone) {
-        padding: 5px 0;
+.section {
+    &__title {
+        padding-bottom: .5em;
+        border-bottom: 2px solid black;
     }
 }
 
-.background-card {
-    padding: 20px 20px 10px 20px;
+h1 {
+    letter-spacing: 0.25em;
 }
 
-.card-wrapper {
-    padding: 5px;
-
-    @media (max-width: @screen-desktop) {
-        float: none !important;
-    }
+h2 {
+    font-weight: normal;
 }
 
-.background-details {
-    .detail {
-        display: table;
-
-        .icon {
-            min-width: 45px;
-            max-width: 45px;
-            text-align: center;
-        }
-
-        .info {
-            width: 100%;
-        }
-
-        .title, .icon * {
-            color: @icon-color !important;
-        }
-
-        .mobile-title {
-            display: none;
-            @media (max-width: @screen-phone) {
-                display: inline-block;
-                margin-left: 5px;
-                font-weight: bold;
-                text-transform: uppercase;
-                vertical-align: middle;
-            }
-        }
-
-        .icon, .info {
-            display: table-cell;
-            padding: 0 10px;
-        }
-
-        @media (max-width: @screen-phone) {
-            display: block;
-
-            .icon {
-                max-width: inherit;
-                min-width: inherit;
-                text-align: left;
-            }
-
-            .icon, .info {
-                display: block;
-                padding: 10px 0;
-            }
-
-            .title {
-                display: none;
-            }
-        }
-    }
+h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin: .75em 0;
+    padding: .75em 0;
 }
 
-.info {
-    .content.has-sidebar {
-        box-sizing: border-box;
-        padding-right: 20px;
-        border-right: 1px solid darken(@card-border-color, 10%);
-        flex: 80%;
-
-        small {
-          display: none;
-        }
-
-        @media (max-width: @screen-desktop) {
-            border-right: 0;
-
-            small {
-              display: block;
-            }
-        }
-        @media (max-width: @screen-phone) {
-            padding: 0 2px;
-        }
-    }
-
-    .sidebar {
-        flex: 20%;
-        box-sizing: border-box;
-        padding: 10px;
-        white-space:nowrap;
-
-        @media (max-width: @screen-desktop) {
-            display: none;
-        }
-    }
+ul, li {
+    margin: 0;
+    padding: 0;
 }
+
+li {
+    list-style-type: none;
+}
+
 
 ul {
     @media (max-width: @screen-phone) {
@@ -138,32 +57,18 @@ ul {
     }
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid black;
+
+    &:visited {
+        color: inherit;
+    }
+}
+
 .date, .location {
     padding-top: 2px;
     display: inline-block;
     margin-right: 10px;
-}
-
-.inline-icon {
-    display: inline-block !important;
-    padding: 0 5px 0 0 !important;
-    margin-top: 2px !important;
-    min-width: auto !important;
-}
-
-.current-event {
-    font-size: 8px;
-    color: #5ACE24 !important;
-    position: absolute;
-    right: 100%;
-    top: 6px;
-    left: -12px;
-}
-
-.mop-wrapper { //mardown output wrapper
-    > p { // markdown outputs the result wrapped in a <p> tag, bootstrap has default margin for this tag, so negating it
-        &:last-child {
-            margin: 0;
-        }
-    }
 }

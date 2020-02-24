@@ -1,0 +1,20 @@
+mixin icon(icon, size, title)
+    svg(class="icon icon-" + icon + " fs-" + size, title=title)
+        use(xlink:href="#icon-" + icon)
+
+mixin inline_icon(icon, title)
+  +icon(icon, 'sm', title)
+
+mixin large_icon(icon, title)
+  +icon(icon, 'lg', title)
+
+mixin join(elements, separator)
+  - let result = elements.filter(el => !!el).join(separator || ', ')
+
+  |#{result}
+
+mixin section(title)
+    section.section(class=attributes.class)
+        h3.section__title=title
+        .section__content
+            block

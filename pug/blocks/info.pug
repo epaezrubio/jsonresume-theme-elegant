@@ -1,0 +1,41 @@
+mixin profile_card_detail(icon, info, itemprop, icon_title)
+  .info__row
+    +icon(icon, 'lg', icon_title)
+    if block
+      block
+    else
+      .info__content
+        |#{info}
+
+.grid__item.info
+  +section('Info').contact-details
+    if resume.basics.computed_location
+      +profile_card_detail("location", resume.basics.computed_location)
+    if resume.basics.phone
+      +profile_card_detail("phone", resume.basics.phone, "telephone")
+    if resume.basics.email
+      +profile_card_detail("mail")
+        a.link-disguise(href="mailto:" + resume.basics.email, itemprop="email")= resume.basics.email
+    if resume.basics.website
+      +profile_card_detail("link")
+        a(href=resume.basics.website, target="_blank")= resume.basics.website
+    if resume.basics.languages
+      +profile_card_detail('language', resume.basics.languages, null, 'Languages I speak')
+
+  unless _.isEmpty(resume.basics.top_five_profiles)
+    +section('Links').social-links
+      each profile in resume.basics.top_five_profiles
+        +profile_card_detail(profile.label, 'lg', profile.label)
+          a.social-link(title=resume.basics.name + " on " + profile.network, href=profile.url, target="_blank")=profile.username
+
+  unless _.isEmpty(resume.skills)
+    +section('Skills').skills
+      each skill in resume.skills
+        .skill
+          .skill__name= skill.name
+          .skill__level
+            each i in [1, 2, 3, 4, 5]
+              .skill__badge(class=skill.level >= i ? "skill__badge--filled": "")
+
+
+

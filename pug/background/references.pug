@@ -1,17 +1,12 @@
 unless _.isEmpty(resume.references)
-  .detail#references
-    +large_icon('thumbs-up', 'References')
-    .info
-      h4.title.text-uppercase References
+  +section('References').references
+    ul.list-unstyled.clear-margin
+      each reference_info in resume.references
+        li.card.card-nested
+          if reference_info.website
+            a(href=reference_info.website, target="_blank")= reference_info.name
+          else
+            |#{reference_info.name}
 
-      .content
-        ul.list-unstyled.clear-margin
-          each reference_info in resume.references
-            li.card.card-nested
-              if reference_info.website
-                a(href=reference_info.website, target="_blank")= reference_info.name
-              else
-                |#{reference_info.name}
-
-              blockquote.quote
-                .mop-wrapper!= reference_info.reference
+          blockquote.quote
+            .mop-wrapper!= reference_info.reference

@@ -1,8 +1,3 @@
 unless _.isEmpty(resume.basics.summary)
-  .detail#about
-    +large_icon('board', 'About')
-    .info
-      h4.title.text-uppercase About
-
-      .card.card-nested
-        .content.mop-wrapper(itemprop="description")!= resume.basics.summary
+  +section('About').about
+    !=resume.basics.summary

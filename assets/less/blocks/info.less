@@ -1,0 +1,42 @@
+.info {
+    background-color: @theme-secondary-bg;
+    padding-left: 3em;
+    padding-right: 3em;
+
+    &__row {
+        display: flex;
+        align-items: center;
+        padding: .5em 0;
+
+        .icon {
+            flex: 0;
+            min-width: 16px;
+            margin-right: .75em;
+        }
+    }
+
+    &__content {
+        flex: 1;
+    }
+}
+
+.skill {
+    margin-bottom: .75em;
+
+    &__name {
+        margin-bottom: .25em;
+    }
+
+    &__badge {
+        width: .75em;
+        height: .75em;
+        margin-right: .5em;
+        border: 2px solid black;
+        border-radius: 99999px;
+        display: inline-block;
+
+        &--filled {
+            background: black;
+        }
+    }
+}

@@ -1,27 +1,23 @@
 unless _.isEmpty(resume.education)
-  .detail#education
-    +large_icon('graduation-cap', 'Education')
-    .info
-      h4.title.text-uppercase Education
+  +section('Education').education
+    each education_info in resume.education
+      .event
+        .event__header
+          .event__title
+            +join([education_info.area, education_info.studyType])
 
-      .content
-        ul.list-unstyled.clear-margin
-          each education_info in resume.education
-            li.card.card-nested
-              .content
-                p.clear-margin.relative
-                  +timed_event_title(
-                     (_.isEmpty(education_info.area) ? '' : (education_info.area + ', ')) +
-                     (_.isEmpty(education_info.studyType) ? '' : (education_info.studyType + ', ')),
-                    !education_info.endDate, 'Currently Pursuing')
-                  |#{education_info.institution}
+          .event__location
+            |#{education_info.location}
 
-                +date(education_info.startDate, education_info.endDate)
-                +location(education_info.location)
+          .event__period
+            +join([education_info.startDate, education_info.endDate || 'Present'], ' - ')
 
-                p= education_info.gpa
+        .event__content
+          if education_info.gpa
+            .event__description
+              |#{education_info.gpa}
 
-                unless _.isEmpty(education_info.courses)
-                  .space-top.labels
-                    each course in education_info.courses
-                      span.label.label-keyword= course
+          unless _.isEmpty(education_info.courses)
+            ul.event__highlights
+              each course in education_info.courses
+                li.event__highlight!= course

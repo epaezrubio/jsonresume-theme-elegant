@@ -10,13 +10,15 @@ const path = require('path')
 const theme = require('./index.js')
 const args = require('minimist')(process.argv.slice(2));
 
+const resumePath = process.env.RESUME_PATH || 'resume-schema/resume.json';
+
 (async () => {
-  let source = args._[0]
-  let target = args._[1] || source && (path.basename(source, '.json') + '.html') || 'index.html'
+  let source = args['source'] || resumePath
+  let target = args['target'] || args._[1] || source && (path.basename(source, '.json') + '.html') || 'index.html'
   let ext = path.extname(target)
 
-  let dir = source && path.dirname(source) || path.join(__dirname, 'build')
-  let resume = source && JSON.parse(fs.readFileSync(source)) || require('resume-schema').resumeJson
+  let dir = path.join(__dirname, 'build')
+  let resume = require(source)
   let result = ext == '.pdf' && await theme.pdf(resume) || theme.html(resume)
 
   if (!fs.existsSync(dir))

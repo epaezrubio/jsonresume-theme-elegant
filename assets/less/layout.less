@@ -1,0 +1,33 @@
+.container {
+    position: relative;
+    margin: 0 auto;
+
+    @media print {
+        margin-left: -3em;
+        margin-right: -3em;
+    }
+
+    @media screen {
+        max-width: 1200px;
+    }
+}
+
+.grid {
+    display: flex;
+
+    &__item {
+        padding-top: @header-size;
+        padding-bottom: 3em;
+    }
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: @header-size;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

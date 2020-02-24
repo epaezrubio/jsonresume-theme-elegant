@@ -4,24 +4,21 @@
 // Icomoon font
 @import (less) "../icomoon/style.css";
 
-// All the mixins go here
-@import 'lib/bootstrap/mixins.less';
-
 // Utility classes go here
 @import "utilities";
 
 // All the base styles go here
 @import "base";
+@import "layout";
+@import "icons";
 
-// Floating Nav Styles
-@import "floating-nav";
-
-// All the styles related to the info card seen on the left goes here
-@import "info_card_styles";
+// Styles for the blocks
+@import "blocks/info";
+@import "blocks/profile";
+@import "blocks/background";
 
 // Styles related to each section on the background card seen on the right
 @import "sections/work_experience";
-@import "sections/skills";
 @import "sections/education";
 @import "sections/awards";
 @import "sections/volunteer_work";
@@ -33,4 +30,4 @@
 @import 'vendor-overrides';
 
 // Printing-related styles
-@import "print";
+// @import "print";
