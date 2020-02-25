@@ -38,6 +38,22 @@ Single-colored icons can be modified like so:
 .icon-child {
   width: 0.71386719em;
 }
+@media screen {
+  .print-only {
+    display: none;
+  }
+}
+body:not(.print) .print-only {
+  display: none;
+}
+@media print {
+  .screen-only {
+    display: none;
+  }
+}
+body.print .screen-only {
+  display: none;
+}
 * {
   box-sizing: border-box;
   page-break-after: auto;
@@ -53,8 +69,20 @@ body {
   color: #333;
   font-size: 16px;
 }
+body.print {
+  background: #fefefe;
+}
+@media print {
+  body {
+    background: #fefefe;
+  }
+}
 svg {
   pointer-events: none;
+}
+path {
+  fill: black !important;
+  stroke: black !important;
 }
 .section__title {
   padding-bottom: 0.5em;
@@ -126,6 +154,14 @@ a:visited {
   padding-top: 20rem;
   padding-bottom: 3em;
 }
+@media print {
+  .grid__item {
+    padding-top: 10rem;
+  }
+}
+body.print .grid__item {
+  padding-top: 10rem;
+}
 .header {
   position: absolute;
   top: 0;
@@ -136,6 +172,14 @@ a:visited {
   flex-direction: column;
   align-items: center;
 }
+@media print {
+  .header {
+    height: 10rem;
+  }
+}
+body.print .header {
+  height: 10rem;
+}
 .icon {
   margin-top: px;
 }
@@ -143,6 +187,14 @@ a:visited {
   background-color: #eee;
   padding-left: 3em;
   padding-right: 3em;
+}
+@media print {
+  .info {
+    background-color: transparent;
+  }
+}
+body.print .info {
+  background-color: transparent;
 }
 .info__row {
   display: flex;
@@ -171,8 +223,24 @@ a:visited {
   border-radius: 99999px;
   display: inline-block;
 }
+@media print {
+  .skill__badge {
+    display: none;
+  }
+}
+body.print .skill__badge {
+  display: none;
+}
 .skill__badge--filled {
   background: black;
+}
+@media print {
+  .skill__badge--filled {
+    display: inline-block;
+  }
+}
+body.print .skill__badge--filled {
+  display: inline-block;
 }
 .profile {
   border: 3px solid black;
@@ -184,9 +252,33 @@ a:visited {
   flex-direction: column;
   justify-content: center;
 }
+@media print {
+  .profile {
+    margin: 0;
+    width: 100%;
+    border: 0;
+    background: transparent;
+  }
+}
+body.print .profile {
+  margin: 0;
+  width: 100%;
+  border: 0;
+  background: transparent;
+}
 .profile h1,
 .profile h2 {
   margin: 0;
+}
+@media print {
+  .profile h2 {
+    padding-top: 0;
+    font-size: 1.25rem;
+  }
+}
+body.print .profile h2 {
+  padding-top: 0;
+  font-size: 1.25rem;
 }
 .profile__data {
   text-align: center;

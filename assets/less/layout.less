@@ -18,6 +18,10 @@
     &__item {
         padding-top: @header-size;
         padding-bottom: 3em;
+
+        .media-print({
+            padding-top: @header-size-print;
+        })
     }
 }
 
@@ -30,4 +34,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .media-print({
+        height: @header-size-print;
+    })
 }

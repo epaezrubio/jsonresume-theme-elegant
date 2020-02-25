@@ -8,8 +8,22 @@
     flex-direction: column;
     justify-content: center;
 
+    .media-print({
+        margin: 0;
+        width: 100%;
+        border: 0;
+        background: transparent;
+    });
+
     h1, h2 {
         margin: 0;
+    }
+
+    h2 {
+        .media-print({
+            padding-top: 0;
+            font-size: 1.25rem;
+        })
     }
 
     &__pic {
