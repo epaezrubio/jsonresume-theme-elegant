@@ -21,7 +21,7 @@ unless _.isEmpty(resume.work)
 
         .event__content
           if experience.summary
-            .event__description!=experience.summary
+            .event__description.screen-only!=experience.summary
 
           unless _.isEmpty(experience.highlights)
             ul.event__highlights
