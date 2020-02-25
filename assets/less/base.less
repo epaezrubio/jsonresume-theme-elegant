@@ -13,10 +13,23 @@ body {
     background: linear-gradient(90deg, @theme-secondary-bg 0%, @theme-secondary-bg 50%, @theme-bg 50%, @theme-bg 100%);
     color: @theme-font-color;
     font-size: 16px;
+
+    &.print {
+        background: @theme-bg;
+    }
+
+    @media print {
+        background: @theme-bg;
+    }
 }
 
 svg {
   pointer-events: none;
+}
+
+path {
+  fill: black !important;
+  stroke: black !important;
 }
 
 .section {

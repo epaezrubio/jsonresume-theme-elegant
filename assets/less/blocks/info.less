@@ -3,6 +3,10 @@
     padding-left: 3em;
     padding-right: 3em;
 
+    .media-print({
+        background-color: transparent
+    });
+
     &__row {
         display: flex;
         align-items: center;
@@ -35,8 +39,16 @@
         border-radius: 99999px;
         display: inline-block;
 
+        .media-print({
+            display: none;
+        });
+
         &--filled {
             background: black;
+
+            .media-print({
+                display: inline-block;
+            });
         }
     }
 }
