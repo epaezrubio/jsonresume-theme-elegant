@@ -6,11 +6,11 @@ unless _.isEmpty(resume.education)
           .event__title
             +join([education_info.area, education_info.studyType])
 
-          .event__location
-            |#{education_info.location}
-
           .event__period
             +join([education_info.startDate, education_info.endDate || 'Present'], ' - ')
+
+          .event__location
+            |#{education_info.location}
 
         .event__content
           if education_info.gpa

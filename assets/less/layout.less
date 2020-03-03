@@ -1,34 +1,38 @@
 .container {
     position: relative;
     margin: 0 auto;
+    max-width: 1200px;
 
-    @media print {
-        margin-left: -3em;
-        margin-right: -3em;
-    }
-
-    @media screen {
-        max-width: 1200px;
-    }
+    .media-print({
+        max-width: 100%;
+    });
 }
 
 .grid {
     display: flex;
+    flex-direction: column;
+
+    @media (min-width: @screen-tablet) {
+        flex-direction: row;
+    }
 
     &__item {
-        padding-top: @header-size;
-        padding-bottom: 3em;
+        padding: 1.5em;
 
-        .media-print({
-            padding-top: @header-size-print;
-        })
+        @media (min-width: @screen-tablet) {
+            padding: @header-size 3em 3em;
+        }
+
     }
 }
 
 .header {
-    position: absolute;
-    top: 0;
-    left: 0;
+    @media (min-width: @screen-tablet) {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
     width: 100%;
     height: @header-size;
     display: flex;

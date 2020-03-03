@@ -1,11 +1,32 @@
 .info {
+    display: flex;
+    flex-wrap: wrap;
     background-color: @theme-secondary-bg;
-    padding-left: 3em;
-    padding-right: 3em;
+    &:extend(.flex-item-list);
+
+    @media (min-width: @screen-tablet) {
+        margin-left: 0;
+        margin-right: 0;
+        display: block;
+    }
 
     .media-print({
         background-color: transparent
     });
+
+    .section {
+        flex: 1 1 200px;
+        &:extend(.flex-item);
+
+        @media (min-width: @screen-tablet) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        &.skills {
+            flex-basis: 100%;
+        }
+    }
 
     &__row {
         display: flex;
@@ -24,8 +45,17 @@
     }
 }
 
+.skills {
+    > .section__content {
+        display: flex;
+        flex-wrap: wrap;
+        &:extend(.flex-item-list);
+    }
+}
+
 .skill {
     margin-bottom: .75em;
+    &:extend(.flex-item);
 
     &__name {
         margin-bottom: .25em;
