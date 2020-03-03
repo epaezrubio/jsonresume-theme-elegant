@@ -38,6 +38,18 @@ Single-colored icons can be modified like so:
 .icon-child {
   width: 0.71386719em;
 }
+.flex-item-list,
+.info,
+.skills > .section__content {
+  margin-left: -0.75em;
+  margin-right: -0.75em;
+}
+.flex-item,
+.info .section,
+.skill {
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
 @media screen {
   .print-only {
     display: none;
@@ -65,12 +77,16 @@ body {
 }
 body {
   font-family: 'Lato';
-  background: linear-gradient(90deg, #eee 0%, #eee 50%, #fefefe 50%, #fefefe 100%);
   color: #333;
   font-size: 16px;
 }
 body.print {
   background: #fefefe;
+}
+@media (min-width: 840px) {
+  body {
+    background: linear-gradient(90deg, #eee 0%, #eee 50%, #fefefe 50%, #fefefe 100%);
+  }
 }
 @media print {
   body {
@@ -135,42 +151,46 @@ a:visited {
 .container {
   position: relative;
   margin: 0 auto;
+  max-width: 1200px;
 }
 @media print {
   .container {
-    margin-left: -3em;
-    margin-right: -3em;
+    max-width: 100%;
   }
 }
-@media screen {
-  .container {
-    max-width: 1200px;
-  }
+body.print .container {
+  max-width: 100%;
 }
 .grid {
   display: flex;
+  flex-direction: column;
 }
-.grid__item {
-  padding-top: 20rem;
-  padding-bottom: 3em;
-}
-@media print {
-  .grid__item {
-    padding-top: 10rem;
+@media (min-width: 840px) {
+  .grid {
+    flex-direction: row;
   }
 }
-body.print .grid__item {
-  padding-top: 10rem;
+.grid__item {
+  padding: 1.5em;
+}
+@media (min-width: 840px) {
+  .grid__item {
+    padding: 20rem 3em 3em;
+  }
 }
 .header {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 20rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media (min-width: 840px) {
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 @media print {
   .header {
@@ -184,9 +204,16 @@ body.print .header {
   margin-top: px;
 }
 .info {
+  display: flex;
+  flex-wrap: wrap;
   background-color: #eee;
-  padding-left: 3em;
-  padding-right: 3em;
+}
+@media (min-width: 840px) {
+  .info {
+    margin-left: 0;
+    margin-right: 0;
+    display: block;
+  }
 }
 @media print {
   .info {
@@ -195,6 +222,18 @@ body.print .header {
 }
 body.print .info {
   background-color: transparent;
+}
+.info .section {
+  flex: 1 1 200px;
+}
+@media (min-width: 840px) {
+  .info .section {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+.info .section.skills {
+  flex-basis: 100%;
 }
 .info__row {
   display: flex;
@@ -208,6 +247,10 @@ body.print .info {
 }
 .info__content {
   flex: 1;
+}
+.skills > .section__content {
+  display: flex;
+  flex-wrap: wrap;
 }
 .skill {
   margin-bottom: 0.75em;
@@ -284,8 +327,6 @@ body.print .profile h2 {
   text-align: center;
 }
 .background {
-  padding-left: 3em;
-  padding-right: 3em;
   background: #fefefe;
 }
 .event {
@@ -294,21 +335,21 @@ body.print .profile h2 {
 .event__header {
   display: flex;
   flex-flow: wrap;
+  justify-content: space-between;
   padding-bottom: 0.75em;
 }
 .event__title {
-  flex: 1;
+  flex: 1 1 100%;
   font-size: 1.25rem;
   font-weight: bold;
-}
-.event__period {
-  flex-basis: 100%;
 }
 .event__location {
   text-align: right;
 }
+.event__description {
+  padding-bottom: 0.75em;
+}
 .event__highlights {
-  padding-top: 0.75em;
   padding-left: 1em;
 }
 .event__highlight {
