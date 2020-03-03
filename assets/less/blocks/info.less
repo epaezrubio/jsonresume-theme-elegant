@@ -49,6 +49,8 @@
     > .section__content {
         display: flex;
         flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         &:extend(.flex-item-list);
     }
 }

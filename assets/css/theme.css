@@ -100,6 +100,9 @@ path {
   fill: black !important;
   stroke: black !important;
 }
+.section {
+  padding-bottom: 1.5em;
+}
 .section__title {
   padding-bottom: 0.5em;
   border-bottom: 2px solid black;
@@ -118,8 +121,8 @@ h5,
 h6 {
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  margin: 0.75em 0;
-  padding: 0.75em 0;
+  margin: 0 0 0.75em;
+  padding: 0 0 0.75em 0;
 }
 ul,
 li {
@@ -150,6 +153,7 @@ a:visited {
 }
 .container {
   position: relative;
+  overflow-x: hidden;
   margin: 0 auto;
   max-width: 1200px;
 }
@@ -171,11 +175,21 @@ body.print .container {
   }
 }
 .grid__item {
-  padding: 1.5em;
+  padding: 1.5em 1.5em 0;
+}
+@media (min-width: 840px) {
+  body.print .grid__item {
+    padding-top: 10em;
+  }
+}
+@media (min-width: 840px) and print {
+  .grid__item {
+    padding-top: 10em;
+  }
 }
 @media (min-width: 840px) {
   .grid__item {
-    padding: 20rem 3em 3em;
+    padding: 20rem 3em 0;
   }
 }
 .header {
@@ -251,6 +265,8 @@ body.print .info {
 .skills > .section__content {
   display: flex;
   flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 }
 .skill {
   margin-bottom: 0.75em;
@@ -288,7 +304,7 @@ body.print .skill__badge--filled {
 .profile {
   border: 3px solid black;
   background: #fefefe;
-  width: 80%;
+  width: 90%;
   height: 16rem;
   margin: 2rem 0;
   display: flex;
@@ -309,6 +325,11 @@ body.print .profile {
   border: 0;
   background: transparent;
 }
+@media (min-width: 840px) {
+  .profile {
+    width: 80%;
+  }
+}
 .profile h1,
 .profile h2 {
   margin: 0;
@@ -325,12 +346,16 @@ body.print .profile h2 {
 }
 .profile__data {
   text-align: center;
+  padding: 0 0.75em;
 }
 .background {
   background: #fefefe;
 }
 .event {
   margin-bottom: 1.75em;
+}
+.event:last-of-type {
+  margin-bottom: 0;
 }
 .event__header {
   display: flex;
