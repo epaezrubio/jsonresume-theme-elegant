@@ -1,5 +1,6 @@
 .container {
     position: relative;
+    overflow-x: hidden;
     margin: 0 auto;
     max-width: 1200px;
 
@@ -17,12 +18,17 @@
     }
 
     &__item {
-        padding: 1.5em;
+        padding: 1.5em 1.5em 0;
 
         @media (min-width: @screen-tablet) {
-            padding: @header-size 3em 3em;
+            .media-print({
+                padding-top: 10em;
+            });
         }
 
+        @media (min-width: @screen-tablet) {
+            padding: @header-size 3em 0;
+        }
     }
 }
 
