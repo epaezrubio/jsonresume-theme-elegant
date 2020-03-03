@@ -1,34 +1,38 @@
 .background {
-    padding-left: 3em;
-    padding-right: 3em;
     background: @theme-bg;
 }
 
 .event {
     margin-bottom: 1.75em;
 
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+
     &__header {
         display: flex;
         flex-flow: wrap;
+        justify-content: space-between;
         padding-bottom: .75em;
     }
 
     &__title {
-        flex: 1;
+        flex: 1 1 100%;
         font-size: 1.25rem;
         font-weight: bold;
     }
 
-    &__period {
-        flex-basis: 100%;
-    }
+    &__period {}
 
     &__location {
         text-align: right;
     }
 
+    &__description {
+        padding-bottom: .75em;
+    }
+
     &__highlights {
-        padding-top: .75em;
         padding-left: 1em;
     }
 

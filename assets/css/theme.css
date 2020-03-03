@@ -38,6 +38,18 @@ Single-colored icons can be modified like so:
 .icon-child {
   width: 0.71386719em;
 }
+.flex-item-list,
+.info,
+.skills > .section__content {
+  margin-left: -0.75em;
+  margin-right: -0.75em;
+}
+.flex-item,
+.info .section,
+.skill {
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
 @media screen {
   .print-only {
     display: none;
@@ -65,12 +77,16 @@ body {
 }
 body {
   font-family: 'Lato';
-  background: linear-gradient(90deg, #eee 0%, #eee 50%, #fefefe 50%, #fefefe 100%);
   color: #333;
   font-size: 16px;
 }
 body.print {
   background: #fefefe;
+}
+@media (min-width: 840px) {
+  body {
+    background: linear-gradient(90deg, #eee 0%, #eee 50%, #fefefe 50%, #fefefe 100%);
+  }
 }
 @media print {
   body {
@@ -83,6 +99,9 @@ svg {
 path {
   fill: black !important;
   stroke: black !important;
+}
+.section {
+  padding-bottom: 1.5em;
 }
 .section__title {
   padding-bottom: 0.5em;
@@ -102,8 +121,8 @@ h5,
 h6 {
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  margin: 0.75em 0;
-  padding: 0.75em 0;
+  margin: 0 0 0.75em;
+  padding: 0 0 0.75em 0;
 }
 ul,
 li {
@@ -134,43 +153,58 @@ a:visited {
 }
 .container {
   position: relative;
+  overflow-x: hidden;
   margin: 0 auto;
+  max-width: 1200px;
 }
 @media print {
   .container {
-    margin-left: -3em;
-    margin-right: -3em;
+    max-width: 100%;
   }
 }
-@media screen {
-  .container {
-    max-width: 1200px;
-  }
+body.print .container {
+  max-width: 100%;
 }
 .grid {
   display: flex;
+  flex-direction: column;
 }
-.grid__item {
-  padding-top: 20rem;
-  padding-bottom: 3em;
-}
-@media print {
-  .grid__item {
-    padding-top: 10rem;
+@media (min-width: 840px) {
+  .grid {
+    flex-direction: row;
   }
 }
-body.print .grid__item {
-  padding-top: 10rem;
+.grid__item {
+  padding: 1.5em 1.5em 0;
+}
+@media (min-width: 840px) {
+  body.print .grid__item {
+    padding-top: 10em;
+  }
+}
+@media (min-width: 840px) and print {
+  .grid__item {
+    padding-top: 10em;
+  }
+}
+@media (min-width: 840px) {
+  .grid__item {
+    padding: 20rem 3em 0;
+  }
 }
 .header {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 20rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media (min-width: 840px) {
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 @media print {
   .header {
@@ -184,9 +218,16 @@ body.print .header {
   margin-top: px;
 }
 .info {
+  display: flex;
+  flex-wrap: wrap;
   background-color: #eee;
-  padding-left: 3em;
-  padding-right: 3em;
+}
+@media (min-width: 840px) {
+  .info {
+    margin-left: 0;
+    margin-right: 0;
+    display: block;
+  }
 }
 @media print {
   .info {
@@ -195,6 +236,18 @@ body.print .header {
 }
 body.print .info {
   background-color: transparent;
+}
+.info .section {
+  flex: 1 1 200px;
+}
+@media (min-width: 840px) {
+  .info .section {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+.info .section.skills {
+  flex-basis: 100%;
 }
 .info__row {
   display: flex;
@@ -208,6 +261,12 @@ body.print .info {
 }
 .info__content {
   flex: 1;
+}
+.skills > .section__content {
+  display: flex;
+  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 }
 .skill {
   margin-bottom: 0.75em;
@@ -245,7 +304,7 @@ body.print .skill__badge--filled {
 .profile {
   border: 3px solid black;
   background: #fefefe;
-  width: 80%;
+  width: 90%;
   height: 16rem;
   margin: 2rem 0;
   display: flex;
@@ -266,6 +325,11 @@ body.print .profile {
   border: 0;
   background: transparent;
 }
+@media (min-width: 840px) {
+  .profile {
+    width: 80%;
+  }
+}
 .profile h1,
 .profile h2 {
   margin: 0;
@@ -282,33 +346,35 @@ body.print .profile h2 {
 }
 .profile__data {
   text-align: center;
+  padding: 0 0.75em;
 }
 .background {
-  padding-left: 3em;
-  padding-right: 3em;
   background: #fefefe;
 }
 .event {
   margin-bottom: 1.75em;
 }
+.event:last-of-type {
+  margin-bottom: 0;
+}
 .event__header {
   display: flex;
   flex-flow: wrap;
+  justify-content: space-between;
   padding-bottom: 0.75em;
 }
 .event__title {
-  flex: 1;
+  flex: 1 1 100%;
   font-size: 1.25rem;
   font-weight: bold;
-}
-.event__period {
-  flex-basis: 100%;
 }
 .event__location {
   text-align: right;
 }
+.event__description {
+  padding-bottom: 0.75em;
+}
 .event__highlights {
-  padding-top: 0.75em;
   padding-left: 1em;
 }
 .event__highlight {

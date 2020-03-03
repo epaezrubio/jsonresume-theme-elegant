@@ -1,7 +1,7 @@
 .profile {
     border: 3px solid black;
     background: @theme-bg;
-    width: 80%;
+    width: 90%;
     height: @header-size * 0.8;
     margin: @header-size * 0.1 0;
     display: flex;
@@ -14,6 +14,10 @@
         border: 0;
         background: transparent;
     });
+
+    @media (min-width: @screen-tablet) {
+        width: 80%;
+    }
 
     h1, h2 {
         margin: 0;
@@ -32,5 +36,6 @@
 
     &__data {
         text-align: center;
+        padding: 0 0.75em;
     }
 }

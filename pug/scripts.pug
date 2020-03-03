@@ -11,3 +11,18 @@ script.
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(wf, s);
   })();
+
+
+  window.addEventListener('load', () => {
+    function setPrintClass() {
+        if (window.location.hash.indexOf('print') !== -1) {
+            window.document.body.classList.add('print')
+        } else {
+            window.document.body.classList.remove('print')
+        }
+    }
+
+    setPrintClass()
+
+    window.addEventListener('hashchange', setPrintClass)
+  })
