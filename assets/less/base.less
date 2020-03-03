@@ -10,12 +10,15 @@ html, body {
 
 body {
     font-family: 'Lato';
-    background: linear-gradient(90deg, @theme-secondary-bg 0%, @theme-secondary-bg 50%, @theme-bg 50%, @theme-bg 100%);
     color: @theme-font-color;
     font-size: 16px;
 
     &.print {
         background: @theme-bg;
+    }
+    
+    @media (min-width: @screen-tablet) {
+        background: linear-gradient(90deg, @theme-secondary-bg 0%, @theme-secondary-bg 50%, @theme-bg 50%, @theme-bg 100%);
     }
 
     @media print {
@@ -33,6 +36,8 @@ path {
 }
 
 .section {
+    padding-bottom: 1.5em;
+
     &__title {
         padding-bottom: .5em;
         border-bottom: 2px solid black;
@@ -50,8 +55,8 @@ h2 {
 h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    margin: .75em 0;
-    padding: .75em 0;
+    margin: 0 0 .75em;
+    padding: 0 0 .75em 0;
 }
 
 ul, li {
