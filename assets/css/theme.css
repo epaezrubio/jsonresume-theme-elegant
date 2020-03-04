@@ -68,7 +68,6 @@ body.print .screen-only {
 }
 * {
   box-sizing: border-box;
-  page-break-after: auto;
 }
 html,
 body {
@@ -102,6 +101,9 @@ path {
 }
 .section {
   padding-bottom: 1.5em;
+}
+.section:last-of-type {
+  padding-bottom: 0;
 }
 .section__title {
   padding-bottom: 0.5em;
@@ -261,6 +263,7 @@ body.print .info {
 }
 .info__content {
   flex: 1;
+  position: relative;
 }
 .skills > .section__content {
   display: flex;
@@ -353,6 +356,7 @@ body.print .profile h2 {
 }
 .event {
   margin-bottom: 1.75em;
+  page-break-inside: avoid;
 }
 .event:last-of-type {
   margin-bottom: 0;
@@ -360,6 +364,7 @@ body.print .profile h2 {
 .event__header {
   display: flex;
   flex-flow: wrap;
+  page-break-after: avoid;
   justify-content: space-between;
   padding-bottom: 0.75em;
 }

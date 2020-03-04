@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-    page-break-after: auto;
 }
 
 html, body {
@@ -37,6 +36,10 @@ path {
 
 .section {
     padding-bottom: 1.5em;
+
+    &:last-of-type {
+        padding-bottom: 0;
+    }
 
     &__title {
         padding-bottom: .5em;
