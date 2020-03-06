@@ -4,17 +4,13 @@
 
 .event {
     margin-bottom: 1.75em;
-    page-break-inside: avoid;
+    overflow: visible;
 
     &:last-of-type {
         margin-bottom: 0;
     }
 
     &__header {
-        display: flex;
-        flex-flow: wrap;
-        page-break-after: avoid;
-        justify-content: space-between;
         padding-bottom: .75em;
     }
 
@@ -22,6 +18,12 @@
         flex: 1 1 100%;
         font-size: 1.25rem;
         font-weight: bold;
+    }
+
+    &__subtitle {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-between;
     }
 
     &__period {}

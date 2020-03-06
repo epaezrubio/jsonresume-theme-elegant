@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     background-color: @theme-secondary-bg;
+    padding-bottom: 0.75em;
     &:extend(.flex-item-list);
 
     @media (min-width: @screen-tablet) {
@@ -51,7 +52,7 @@
         display: flex;
         flex-wrap: wrap;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
         &:extend(.flex-item-list);
     }
 }

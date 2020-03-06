@@ -82,7 +82,7 @@ body {
 body.print {
   background: #fefefe;
 }
-@media (min-width: 840px) {
+@media (min-width: 1024px) {
   body {
     background: linear-gradient(90deg, #eee 0%, #eee 50%, #fefefe 50%, #fefefe 100%);
   }
@@ -171,7 +171,7 @@ body.print .container {
   display: flex;
   flex-direction: column;
 }
-@media (min-width: 840px) {
+@media (min-width: 1024px) {
   .grid {
     flex-direction: row;
   }
@@ -179,17 +179,17 @@ body.print .container {
 .grid__item {
   padding: 1.5em 1.5em 0;
 }
-@media (min-width: 840px) {
+@media (min-width: 1024px) {
   body.print .grid__item {
     padding-top: 10em;
   }
 }
-@media (min-width: 840px) and print {
+@media (min-width: 1024px) and print {
   .grid__item {
     padding-top: 10em;
   }
 }
-@media (min-width: 840px) {
+@media (min-width: 1024px) {
   .grid__item {
     padding: 20rem 3em 0;
   }
@@ -201,7 +201,7 @@ body.print .container {
   flex-direction: column;
   align-items: center;
 }
-@media (min-width: 840px) {
+@media (min-width: 1024px) {
   .header {
     position: absolute;
     top: 0;
@@ -223,8 +223,9 @@ body.print .header {
   display: flex;
   flex-wrap: wrap;
   background-color: #eee;
+  padding-bottom: 0.75em;
 }
-@media (min-width: 840px) {
+@media (min-width: 1024px) {
   .info {
     margin-left: 0;
     margin-right: 0;
@@ -242,7 +243,7 @@ body.print .info {
 .info .section {
   flex: 1 1 200px;
 }
-@media (min-width: 840px) {
+@media (min-width: 1024px) {
   .info .section {
     margin-left: 0;
     margin-right: 0;
@@ -269,7 +270,7 @@ body.print .info {
   display: flex;
   flex-wrap: wrap;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
 }
 .skill {
   margin-bottom: 0.75em;
@@ -328,7 +329,7 @@ body.print .profile {
   border: 0;
   background: transparent;
 }
-@media (min-width: 840px) {
+@media (min-width: 1024px) {
   .profile {
     width: 80%;
   }
@@ -356,22 +357,23 @@ body.print .profile h2 {
 }
 .event {
   margin-bottom: 1.75em;
-  page-break-inside: avoid;
+  overflow: visible;
 }
 .event:last-of-type {
   margin-bottom: 0;
 }
 .event__header {
-  display: flex;
-  flex-flow: wrap;
-  page-break-after: avoid;
-  justify-content: space-between;
   padding-bottom: 0.75em;
 }
 .event__title {
   flex: 1 1 100%;
   font-size: 1.25rem;
   font-weight: bold;
+}
+.event__subtitle {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
 }
 .event__location {
   text-align: right;
@@ -385,7 +387,7 @@ body.print .profile h2 {
 .event__highlight {
   list-style-type: square;
 }
-@media (max-width: 840px) {
+@media (max-width: 1024px) {
   .quote {
     font-size: inherit;
   }
