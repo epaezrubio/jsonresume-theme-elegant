@@ -13,11 +13,12 @@ unless _.isEmpty(resume.work)
               else
                 |#{experience.company}
 
-          .event__period
-            |#{experience.startDate} - #{experience.endDate || 'Present'}
+          .event__subtitle
+            .event__period
+              |#{experience.startDate} - #{experience.endDate || 'Present'}
 
-          .event__location
-            |#{experience.location}
+            .event__location
+              |#{experience.location}
 
         .event__content
           if experience.summary
