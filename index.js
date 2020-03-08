@@ -9,102 +9,113 @@ const fs = require('fs')
 
 utils.setConfig({ date_format: 'MMM, YYYY' })
 
-function interpolate(object, keyPath) {
-    return _.reduce(keyPath.split('.'), (res, key) => (res || {})[key], object)
-}
-
-function capitalize(str) {
-    if (str) {
-        str = str.toString()
-        return str[0].toUpperCase() + str.slice(1).toLowerCase()
-    }
-    return str
-}
-
 function markdown(str) {
     return str != null && markdownit.renderInline(str) || null
 }
 
-function floatingNavItems(resume) {
-    var items
-    if (resume.basics.priority == 'research')
-        items = [
-            { label: 'About', target: 'about', icon: 'board', requires: 'basics.summary' },
-            { label: 'Publications', target: 'publications', icon: 'newspaper', requires: 'publications' },
-            { label: 'Awards', target: 'awards', icon: 'trophy', requires: 'awards' },
-            { label: 'Education', target: 'education', icon: 'graduation-cap', requires: 'education' },
-            { label: 'References', target: 'references', icon: 'thumbs-up', requires: 'references' },
-            { label: 'Work Experience', target: 'work-experience', icon: 'office', requires: 'work' },
-            { label: 'Volunteer Work', target: 'volunteer-work', icon: 'child', requires: 'volunteer' },
-            { label: 'Skills', target: 'skills', icon: 'tools', requires: 'skills' },
-            { label: 'Interests', target: 'interests', icon: 'heart', requires: 'interests' }
-        ]
-    else
-        items = [
-            { label: 'About', target: 'about', icon: 'board', requires: 'basics.summary' },
-            { label: 'Work Experience', target: 'work-experience', icon: 'office', requires: 'work' },
-            { label: 'Volunteer Work', target: 'volunteer-work', icon: 'child', requires: 'volunteer' },
-            { label: 'Publications', target: 'publications', icon: 'newspaper', requires: 'publications' },
-            { label: 'Awards', target: 'awards', icon: 'trophy', requires: 'awards' },
-            { label: 'Education', target: 'education', icon: 'graduation-cap', requires: 'education' },
-            { label: 'References', target: 'references', icon: 'thumbs-up', requires: 'references' },
-            { label: 'Skills', target: 'skills', icon: 'tools', requires: 'skills' },
-            { label: 'Interests', target: 'interests', icon: 'heart', requires: 'interests' }
-        ]
+function orderBy(list, key = null) {
+    let orderedList = [...list]
 
-    return _.filter(items, item => !_.isEmpty(interpolate(resume, item.requires)))
+    if (key) {
+        let descending = key[0] === '-'
+
+        if (key[0] === '-' || key[0] === '+') {
+            key = key.slice(1)
+        }
+
+        orderedList = _.orderBy(orderedList, key)
+
+        if (descending) {
+            orderedList = orderedList.reverse()
+        }
+    }
+
+    return orderedList
+}
+
+function limitTo(list, limit = Infinity) {
+    return list.slice(0, limit)
+}
+
+function mapItems(items, meta) {
+    if (!meta) {
+        return items
+    }
+
+    let mappedItems = {
+        ...items
+    }
+
+    for (let key in meta) {
+        let order = _.get(meta, `${key}.orderBy`, null)
+        let limit = _.get(meta, `${key}.limitTo`, Infinity)
+
+        let keyList = _.get(mappedItems, key)
+        let keyMeta = _.get(meta, `${key}._meta`, null)
+
+        let mappedList = limitTo(orderBy(keyList, order), limit)
+
+        if (keyMeta) {
+            mappedList = mappedList.map((item) => {
+                return mapItems(item, keyMeta)
+            })
+        }
+
+        _.set(mappedItems, key, mappedList)
+    }
+
+    return mappedItems
 }
 
 function html(resume, static) {
     const addressAttrs = ['address', 'city', 'region', 'countryCode', 'postalCode']
-    let addressValues = _.map(addressAttrs, key => resume.basics.location[key])
+    let mappedResume = mapItems(resume, resume._meta)
+    let addressValues = _.map(addressAttrs, key => mappedResume.basics.location[key])
     let css = fs.readFileSync(__dirname + '/assets/css/theme.css', 'utf-8')
 
-    resume.basics.picture = utils.getUrlForPicture(resume)
-    resume.basics.summary = markdown(resume.basics.summary)
-    resume.basics.computed_location = _.compact(addressValues).join(', ')
+    mappedResume.basics.picture = utils.getUrlForPicture(mappedResume)
+    mappedResume.basics.summary = markdown(mappedResume.basics.summary)
+    mappedResume.basics.computed_location = _.compact(addressValues).join(', ')
 
-    if (resume.languages)
-        resume.basics.languages = _.map(resume.languages, 'language').join(', ')
+    if (mappedResume.languages) {
+        mappedResume.basics.languages = _.map(mappedResume.languages, 'language').join(', ')
+    }
 
-    _.each(resume.basics.profiles, profile => {
+    _.each(mappedResume.basics.profiles, profile => {
         let label = profile.network.toLowerCase()
-        profile.url = utils.getUrlForProfile(resume, label)
+        profile.url = utils.getUrlForProfile(mappedResume, label)
         profile.label = label
     })
 
-    resume.basics.top_five_profiles = resume.basics.profiles.slice(0, 5)
-    resume.basics.remaining_profiles = resume.basics.profiles.slice(5)
-
-    _.each(resume.work, job => {
+    _.each(mappedResume.work, job => {
         let start_date = moment(job.startDate, 'YYYY-MM-DD')
         let end_date = moment(job.endDate, 'YYYY-MM-DD')
-        let can_calculate_period = start_date.isValid() && end_date.isValid()
 
-        if (can_calculate_period)
-            job.duration = moment.preciseDiff(start_date, end_date)
-
-        if (start_date.isValid())
+        if (start_date.isValid()) {
             job.startDate = utils.getFormattedDate(start_date)
+        }
 
-        if (end_date.isValid())
+        if (end_date.isValid()) {
             job.endDate = utils.getFormattedDate(end_date)
+        }
 
         job.summary = markdown(job.summary)
         job.highlights = _.map(job.highlights, markdown)
     })
 
-    _.each(resume.skills, skill => {
+    _.each(mappedResume.skills, skill => {
         const levels = ['Beginner', 'Intermediate', 'Advanced', 'Master']
 
-        if (skill.type)
+        if (skill.type) {
             skill.subtitle = skill.type.toLowerCase()
+        }
+
         if (skill.level) {
             skill.display_progress_bar = _.includes(levels, skill.level)
         }
     })
 
-    _.each(resume.education, education => {
+    _.each(mappedResume.education, education => {
         _.each(['startDate', 'endDate'], type => {
             let date = education[type]
             if (date)
@@ -112,7 +123,7 @@ function html(resume, static) {
         })
     })
 
-    _.each(resume.awards, award => {
+    _.each(mappedResume.awards, award => {
         let date = award.date
         if (date)
             award.date = utils.getFormattedDate(date, 'MMM DD, YYYY')
@@ -120,7 +131,7 @@ function html(resume, static) {
         award.summary = markdown(award.summary)
     })
 
-    _.each(resume.volunteer, volunteer => {
+    _.each(mappedResume.volunteer, volunteer => {
         volunteer.summary = markdown(volunteer.summary)
         volunteer.highlights = _.map(volunteer.highlights, markdown)
 
@@ -131,7 +142,7 @@ function html(resume, static) {
         })
     })
 
-    _.each(resume.publications, publication => {
+    _.each(mappedResume.publications, publication => {
         let date = publication.releaseDate
         if (date)
             publication.releaseDate = utils.getFormattedDate(date, 'MMM DD, YYYY')
@@ -139,13 +150,13 @@ function html(resume, static) {
         publication.summary = markdown(publication.summary)
     })
 
-    _.each(resume.references, reference =>
-        reference.reference = markdown(reference.reference))
+    _.each(mappedResume.references, reference => {
+        reference.reference = markdown(reference.reference)
+    })
 
     return pug.renderFile(__dirname + '/pug/index.pug', {
         basedir: __dirname,
-        nav_items: floatingNavItems(resume),
-        resume: resume,
+        resume: mappedResume,
         static: static,
         css: css,
         _: _
@@ -161,8 +172,9 @@ async function numPages(file, height) {
 async function pdf(resume) {
     let browser = await puppeteer.launch()
     let file = await browser.newPage()
+    let htmlResume = html(resume, true)
 
-    await file.setContent(html(resume, true), { waitUntil: 'networkidle2' })
+    await file.setContent(htmlResume, { waitUntil: 'networkidle2' })
     await file.emulateMedia('screen')
 
     let high = await numPages(file, 100) * 100

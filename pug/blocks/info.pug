@@ -22,9 +22,9 @@ mixin profile_card_detail(icon, info, itemprop, icon_title)
     if resume.basics.languages
       +profile_card_detail('language', resume.basics.languages, null, 'Languages I speak')
 
-  unless _.isEmpty(resume.basics.top_five_profiles)
+  unless _.isEmpty(resume.basics.profiles)
     +section('Links').social-links
-      each profile in resume.basics.top_five_profiles
+      each profile in resume.basics.profiles
         +profile_card_detail(profile.label, 'lg', profile.label)
           a.social-link(title=resume.basics.name + " on " + profile.network, href=profile.url, target="_blank")=profile.username
 
