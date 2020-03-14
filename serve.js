@@ -12,9 +12,12 @@ const theme = require('./index.js')
 const port = process.env.PORT || 8889
 const resumePath = process.env.RESUME_PATH || 'resume-schema/resume.json'
 
-const resume = require(resumePath)
 
 async function render(func) {
+    delete require.cache[require.resolve(resumePath)]
+
+    const resume = require(resumePath)
+
     try {
         return await func(JSON.parse(JSON.stringify(resume)))
     } catch (e) {

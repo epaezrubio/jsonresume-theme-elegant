@@ -18,6 +18,16 @@
     }
 }
 
+.media-print-tablet(@rules) {
+    @media print and  (min-width: @screen-tablet) {
+        @rules();
+    }
+
+    body.print & {
+        @rules();
+    }
+}
+
 .media-screen(@rules) {
     @media screen {
         @rules();

@@ -177,22 +177,20 @@ body.print .container {
   }
 }
 .grid__item {
-  padding: 1.5em 1.5em 0;
-}
-@media (min-width: 1024px) {
-  body.print .grid__item {
-    padding-top: 10em;
-  }
-}
-@media (min-width: 1024px) and print {
-  .grid__item {
-    padding-top: 10em;
-  }
+  padding: 1.5em 3em 0;
 }
 @media (min-width: 1024px) {
   .grid__item {
     padding: 20rem 3em 0;
   }
+}
+@media print and (min-width: 1024px) {
+  .grid__item {
+    padding-top: 10em;
+  }
+}
+body.print .grid__item {
+  padding-top: 10em;
 }
 .header {
   width: 100%;
