@@ -1,0 +1,28 @@
+unless _.isEmpty(resume.projects)
+  +section('Projects').projects
+    each project in resume.projects
+      .event
+        .event__header
+          .event__title
+            |#{project.name}
+
+            if project.type
+              |,&nbsp;
+              if project.website
+                a(href=project.website, target="_blank")= project.type
+              else
+                |#{project.type}
+
+          .event__subtitle
+            .event__period
+              +join([project.startDate, project.endDate || 'Present'], ' - ')
+
+        .event__content
+          if project.summary
+            .event__description.screen-only!=project.summary
+
+          unless _.isEmpty(project.highlights)
+            ul.event__highlights
+              each highlight in project.highlights
+                li.event__highlight
+                  !=highlight
