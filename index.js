@@ -163,12 +163,6 @@ function html(resume, static) {
     })
 }
 
-async function numPages(file, height) {
-    let buffer = await file.pdf({ width: '1025px', height: height + 'px', printBackground: true })
-    let data = await pdfparse(buffer)
-    return data.numpages
-}
-
 async function pdf(resume) {
     let browser = await puppeteer.launch()
     let file = await browser.newPage()
@@ -176,18 +170,6 @@ async function pdf(resume) {
 
     await file.setContent(htmlResume, { waitUntil: 'networkidle2' })
     await file.emulateMedia('screen')
-
-    let high = await numPages(file, 100) * 100
-    let low = await numPages(file, 10) * 10
-
-    while (high > (low + 1)) {
-        let mean = Math.round((high + low) / 2)
-        let count = await numPages(file, mean)
-        if (count > 1)
-            low = mean
-        else
-            high = mean
-    }
 
     let buffer = await file.pdf({
         width: '210mm',

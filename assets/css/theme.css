@@ -177,11 +177,11 @@ body.print .container {
   }
 }
 .grid__item {
-  padding: 1.5em 3em 0;
+  padding: 1.5em 3em 1.5em;
 }
 @media (min-width: 1024px) {
   .grid__item {
-    padding: 20rem 3em 0;
+    padding: 20rem 3em 3em;
   }
 }
 @media print and (min-width: 1024px) {
@@ -359,6 +359,9 @@ body.print .profile h2 {
 }
 .event:last-of-type {
   margin-bottom: 0;
+}
+.event--condensed .event__content {
+  display: none;
 }
 .event__header {
   padding-bottom: 0.75em;

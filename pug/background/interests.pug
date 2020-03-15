@@ -8,5 +8,6 @@ unless _.isEmpty(resume.interests)
 
           unless _.isEmpty(interest.keywords)
             .space-top.labels
-              each keyword in interest.keywords
-                span.label.label-keyword= keyword
+              - let keyWordsStr = interest.keywords.join(', ')
+
+              |#{keyWordsStr}

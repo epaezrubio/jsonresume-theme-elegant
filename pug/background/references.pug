@@ -1,12 +1,20 @@
 unless _.isEmpty(resume.references)
   +section('References').references
-    ul.list-unstyled.clear-margin
-      each reference_info in resume.references
-        li.card.card-nested
-          if reference_info.website
-            a(href=reference_info.website, target="_blank")= reference_info.name
-          else
-            |#{reference_info.name}
+    each reference in resume.references
+      .event
+        .event__header
+          .event__title
+            if reference.website
+              a(href=reference.website, target="_blank")= reference.name
+            else
+              |#{reference.name}
 
-          blockquote.quote
-            .mop-wrapper!= reference_info.reference
+        .event__content
+          if reference.reference
+            .event__description.screen-only!=reference.reference
+
+          unless _.isEmpty(reference.highlights)
+            ul.event__highlights
+              each highlight in reference.highlights
+                li.event__highlight
+                  !=highlight

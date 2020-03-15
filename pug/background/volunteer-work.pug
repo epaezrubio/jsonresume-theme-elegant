@@ -1,24 +1,31 @@
 unless _.isEmpty(resume.volunteer)
   +section('Volunteer work').volunteer-work
-    ul.list-unstyled.clear-margin
-      each volunteer_info in resume.volunteer
-        li.card.card-nested
-          .content
-            p.clear-margin.relative
-              +timed_event_title(volunteer_info.position, !volunteer_info.endDate, 'Currently Volunteering Here')
+    each volunteer in resume.volunteer
+      .event
+        .event__header
+          .event__title
+            |#{volunteer.position}
+
+            if volunteer.organization
               |,&nbsp;
-              if volunteer_info.website
-                a(href=volunteer_info.website, target="_blank")= volunteer_info.organization
+              if volunteer.website
+                a(href=volunteer.website, target="_blank")= volunteer.organization
               else
-                |#{volunteer_info.organization}
+                |#{volunteer.organization}
 
-            p.text-muted
-              small
-                |#{volunteer_info.startDate} - #{volunteer_info.endDate || 'Present'}
+          .event__subtitle
+            .event__period
+              |#{volunteer.startDate} - #{volunteer.endDate || 'Present'}
 
-            .mop-wrapper!= volunteer_info.summary
+            .event__location
+              |#{volunteer.location}
 
-            unless _.isEmpty(volunteer_info.highlights)
-              ul
-                each highlight in volunteer_info.highlights
-                  li.mop-wrapper!= highlight
+        .event__content
+          if volunteer.summary
+            .event__description.screen-only!=volunteer.summary
+
+          unless _.isEmpty(volunteer.highlights)
+            ul.event__highlights
+              each highlight in volunteer.highlights
+                li.event__highlight
+                  !=highlight

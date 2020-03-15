@@ -1,16 +1,28 @@
 unless _.isEmpty(resume.awards)
   +section('Awards').awards
-    ul.list-unstyled.clear-margin
-      each award in resume.awards
-        li.card.card-nested
-          .content
-            p.clear-margin(itemprop="award")
-              strong= award.title + " "
-              |#{award.awarder}
+    each award in resume.awards
+      .event
+        .event__header
+          .event__title
+            |#{award.title}
 
-            p.text-muted
-              small
-                |Awarded on: #{award.date}
+            if award.awarder
+              |,&nbsp;
+              if award.website
+                a(href=award.website, target="_blank")= award.awarder
+              else
+                |#{award.awarder}
 
-            if award.summary
-              .mop-wrapper!= award.summary
+          .event__subtitle
+            .event__period
+              |#{award.date}
+
+        .event__content
+          if award.summary
+            .event__description.screen-only!=award.summary
+
+          unless _.isEmpty(award.highlights)
+            ul.event__highlights
+              each highlight in award.highlights
+                li.event__highlight
+                  !=highlight
