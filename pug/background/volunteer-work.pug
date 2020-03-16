@@ -22,10 +22,10 @@ unless _.isEmpty(resume.volunteer)
 
         .event__content
           if volunteer.summary
-            .event__description.screen-only!=volunteer.summary
+            .event__description.screen-only!=markdown(volunteer.summary)
 
           unless _.isEmpty(volunteer.highlights)
             ul.event__highlights
               each highlight in volunteer.highlights
                 li.event__highlight
-                  !=highlight
+                  !=markdown(highlight)

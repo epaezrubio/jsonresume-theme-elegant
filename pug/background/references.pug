@@ -11,10 +11,10 @@ unless _.isEmpty(resume.references)
 
         .event__content
           if reference.reference
-            .event__description.screen-only!=reference.reference
+            .event__description.screen-only!=markdown(reference.reference)
 
           unless _.isEmpty(reference.highlights)
             ul.event__highlights
               each highlight in reference.highlights
                 li.event__highlight
-                  !=highlight
+                  !=markdown(highlight)

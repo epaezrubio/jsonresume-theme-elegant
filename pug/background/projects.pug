@@ -19,10 +19,10 @@ unless _.isEmpty(resume.projects)
 
         .event__content
           if project.summary
-            .event__description.screen-only!=project.summary
+            .event__description.screen-only!=markdown(project.summary)
 
           unless _.isEmpty(project.highlights)
             ul.event__highlights
               each highlight in project.highlights
                 li.event__highlight
-                  !=highlight
+                  !=markdown(highlight)
