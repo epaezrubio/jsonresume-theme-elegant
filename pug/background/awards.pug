@@ -19,10 +19,10 @@ unless _.isEmpty(resume.awards)
 
         .event__content
           if award.summary
-            .event__description.screen-only!=award.summary
+            .event__description.screen-only!=markdown(award.summary)
 
           unless _.isEmpty(award.highlights)
             ul.event__highlights
               each highlight in award.highlights
                 li.event__highlight
-                  !=highlight
+                  !=markdown(highlight)

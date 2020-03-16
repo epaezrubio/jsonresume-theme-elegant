@@ -19,10 +19,10 @@ unless _.isEmpty(resume.publications)
 
         .event__content
           if publication.summary
-            .event__description.screen-only!=publication.summary
+            .event__description.screen-only!=markdown(publication.summary)
 
           unless _.isEmpty(publication.highlights)
             ul.event__highlights
               each highlight in publication.highlights
                 li.event__highlight
-                  !=highlight
+                  !=markdown(highlight)

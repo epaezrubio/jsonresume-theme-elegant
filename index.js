@@ -74,7 +74,6 @@ function html(resume, static) {
     let css = fs.readFileSync(__dirname + '/assets/css/theme.css', 'utf-8')
 
     mappedResume.basics.picture = utils.getUrlForPicture(mappedResume)
-    mappedResume.basics.summary = markdown(mappedResume.basics.summary)
     mappedResume.basics.computed_location = _.compact(addressValues).join(', ')
 
     if (mappedResume.languages) {
@@ -98,9 +97,6 @@ function html(resume, static) {
         if (end_date.isValid()) {
             job.endDate = utils.getFormattedDate(end_date)
         }
-
-        job.summary = markdown(job.summary)
-        job.highlights = _.map(job.highlights, markdown)
     })
 
     _.each(mappedResume.skills, skill => {
@@ -125,16 +121,13 @@ function html(resume, static) {
 
     _.each(mappedResume.awards, award => {
         let date = award.date
-        if (date)
-            award.date = utils.getFormattedDate(date, 'MMM DD, YYYY')
 
-        award.summary = markdown(award.summary)
+        if (date) {
+            award.date = utils.getFormattedDate(date, 'MMM DD, YYYY')
+        }
     })
 
     _.each(mappedResume.volunteer, volunteer => {
-        volunteer.summary = markdown(volunteer.summary)
-        volunteer.highlights = _.map(volunteer.highlights, markdown)
-
         _.each(['startDate', 'endDate'], type => {
             let date = volunteer[type]
             if (date)
@@ -144,23 +137,21 @@ function html(resume, static) {
 
     _.each(mappedResume.publications, publication => {
         let date = publication.releaseDate
-        if (date)
+        if (date) {
             publication.releaseDate = utils.getFormattedDate(date, 'MMM DD, YYYY')
-
-        publication.summary = markdown(publication.summary)
+        }
     })
 
-    _.each(mappedResume.references, reference => {
-        reference.reference = markdown(reference.reference)
-    })
-
-    return pug.renderFile(__dirname + '/pug/index.pug', {
+    const data = {
         basedir: __dirname,
         resume: mappedResume,
-        static: static,
-        css: css,
-        _: _
-    })
+        static,
+        css,
+        _,
+        markdown
+    }
+
+    return pug.renderFile(__dirname + '/pug/index.pug', data)
 }
 
 async function pdf(resume) {

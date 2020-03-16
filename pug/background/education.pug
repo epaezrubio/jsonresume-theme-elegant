@@ -21,4 +21,4 @@ unless _.isEmpty(resume.education)
           unless _.isEmpty(education_info.courses)
             ul.event__highlights
               each course in education_info.courses
-                li.event__highlight!= course
+                li.event__highlight!=markdown(course)
