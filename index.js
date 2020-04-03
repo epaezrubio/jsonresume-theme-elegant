@@ -87,15 +87,15 @@ function html(resume, static) {
     })
 
     _.each(mappedResume.work, job => {
-        let start_date = moment(job.startDate, 'YYYY-MM-DD')
-        let end_date = moment(job.endDate, 'YYYY-MM-DD')
+        let startDate = moment(job.startDate, 'YYYY-MM-DD')
+        let endDate = moment(job.endDate, 'YYYY-MM-DD')
 
-        if (start_date.isValid()) {
-            job.startDate = utils.getFormattedDate(start_date)
+        if (startDate.isValid()) {
+            job.startDate = utils.getFormattedDate(startDate)
         }
 
-        if (end_date.isValid()) {
-            job.endDate = utils.getFormattedDate(end_date)
+        if (endDate.isValid()) {
+            job.endDate = utils.getFormattedDate(endDate)
         }
     })
 
@@ -114,8 +114,9 @@ function html(resume, static) {
     _.each(mappedResume.education, education => {
         _.each(['startDate', 'endDate'], type => {
             let date = education[type]
-            if (date)
+            if (date) {
                 education[type] = utils.getFormattedDate(date)
+            }
         })
     })
 
@@ -130,8 +131,9 @@ function html(resume, static) {
     _.each(mappedResume.volunteer, volunteer => {
         _.each(['startDate', 'endDate'], type => {
             let date = volunteer[type]
-            if (date)
+            if (date) {
                 volunteer[type] = utils.getFormattedDate(date)
+            }
         })
     })
 
