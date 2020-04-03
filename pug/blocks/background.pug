@@ -1,12 +1,78 @@
+-
+  function getOrderedBlocks(defaultBlocks, blocksOrder) {
+    let blocks = []
+
+    Object.entries(blocksOrder).forEach((entry) => {
+      let defaultBlockIndex = defaultBlocks.indexOf(entry[0])
+
+      if (defaultBlockIndex !== -1) {
+        defaultBlocks.splice(defaultBlockIndex, 1)
+        blocks[entry[1]] = entry[0]
+      }
+    })
+
+    let currentBlockIndex = 0
+    while (defaultBlocks.length > 0) {
+      // Check if current block index is used by a pre-sorted block
+      if (blocks[currentBlockIndex] !== undefined) {
+        currentBlockIndex++
+        continue
+      }
+
+      let nextBlock = defaultBlocks.splice(0, 1)[0]
+
+      // Check if current block will or has been placed in a different position
+      if (blocksOrder[nextBlock] === undefined) {
+        blocks[currentBlockIndex] = nextBlock
+        currentBlockIndex++
+      }
+    }
+
+    // filter possible undefined values in the middle of the array (a blockOrder value might)
+    return blocks.filter((block) => {
+      return block !== undefined
+    })
+  }
+
+mixin backgroundBlock(currentBlock)
+  //- Super hacky way to include templates in arbitrary order: https://github.com/pugjs/pug/issues/1990
+
+  if currentBlock === 'about'
+    include ../background/about.pug
+  else if currentBlock === 'work'
+    include ../background/work-experience.pug
+  else if currentBlock === 'volunteer'
+    include ../background/volunteer-work.pug
+  else if currentBlock === 'projects'
+    include ../background/projects.pug
+  else if currentBlock === 'publications'
+    include ../background/publications.pug
+  else if currentBlock === 'awards'
+    include ../background/awards.pug
+  else if currentBlock === 'education'
+    include ../background/education.pug
+  else if currentBlock === 'references'
+    include ../background/references.pug
+  else if currentBlock === 'interests'
+    include ../background/interests.pug
+
 section.background.grid__item
   .card.background-card
     .background-details
-      include ../background/about.pug
-      include ../background/work-experience.pug
-      include ../background/volunteer-work.pug
-      include ../background/projects.pug
-      include ../background/publications.pug
-      include ../background/awards.pug
-      include ../background/education.pug
-      include ../background/references.pug
-      include ../background/interests.pug
+      -
+        let defaultBlocks = [
+          "about",
+          "work",
+          "volunteer",
+          "projects",
+          "publications",
+          "awards",
+          "education",
+          "references",
+          "interests"
+        ]
+
+        let blocks = getOrderedBlocks(defaultBlocks, backgroundOrder)
+
+      each currentBlock, index in blocks
+        +backgroundBlock(currentBlock)

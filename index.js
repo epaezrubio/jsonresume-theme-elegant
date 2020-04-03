@@ -142,9 +142,18 @@ function html(resume, static) {
         }
     })
 
+    let backgroundOrder = Object.keys(mappedResume._meta || {}).reduce((acc, cur) => {
+        if (typeof mappedResume._meta[cur].position !== undefined) {
+            acc[cur] = mappedResume._meta[cur].position
+        }
+
+        return acc
+    }, {})
+
     const data = {
         basedir: __dirname,
         resume: mappedResume,
+        backgroundOrder,
         static,
         css,
         _,
