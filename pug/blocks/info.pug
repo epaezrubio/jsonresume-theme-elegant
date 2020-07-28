@@ -30,12 +30,10 @@ mixin profile_card_detail(icon, info, itemprop, icon_title)
 
   unless _.isEmpty(resume.skills)
     +section('Skills').skills
-      each skill in resume.skills
+      each skill, level in resume.skills
         .skill
-          .skill__name= skill.name
-          .skill__level
-            each i in [1, 2, 3, 4, 5]
-              .skill__badge(class=skill.level >= i ? "skill__badge--filled": "")
+          .skill__level= level
+          .skill__name= skill.join(', ')
 
 
 
