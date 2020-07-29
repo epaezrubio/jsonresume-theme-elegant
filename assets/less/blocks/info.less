@@ -1,7 +1,7 @@
 .info {
     display: flex;
     flex-wrap: wrap;
-    background-color: @theme-secondary-bg;
+    background-color: var(--theme-secondary-bg);
     padding-bottom: 0.75em;
     &:extend(.flex-item-list);
 
@@ -52,7 +52,7 @@
         display: flex;
         flex-wrap: wrap;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         &:extend(.flex-item-list);
     }
 }
@@ -61,6 +61,11 @@
     margin-bottom: .75em;
     &:extend(.flex-item);
 
+    &__level {
+        font-weight: bold;
+    }
+
+    &__level,
     &__name {
         margin-bottom: .25em;
     }

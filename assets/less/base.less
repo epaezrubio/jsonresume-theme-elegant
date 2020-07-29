@@ -1,3 +1,23 @@
+:root {
+    --theme-bg: @theme-bg;
+    --theme-secondary-bg: @theme-secondary-bg;
+    --theme-font-color: @theme-font-color;
+    --theme-border-color: @theme-border-color;
+    --link-color: @link-color;
+    --icon-color: @icon-color;
+    --theme-label-bg: @theme-label-bg;
+
+    @media (prefers-color-scheme: dark) {
+        --theme-bg: @theme-bg-dark;
+        --theme-secondary-bg: @theme-secondary-bg-dark;
+        --theme-font-color: @theme-font-color-dark;
+        --theme-border-color: @theme-border-color-dark;
+        --link-color: @link-color-dark;
+        --icon-color: @icon-color-dark;
+        --theme-label-bg: @theme-label-bg-dark;
+    }
+}
+
 * {
     box-sizing: border-box;
 }
@@ -9,19 +29,34 @@ html, body {
 
 body {
     font-family: 'Lato';
-    color: @theme-font-color;
-    font-size: 16px;
+    color: var(--theme-font-color);
+    background: var(--theme-bg);
+
+    @media (min-width: @screen-tablet) {
+        background: linear-gradient(90deg, var(--theme-secondary-bg) 0%, var(--theme-secondary-bg) 50%, var(--theme-bg) 50%, var(--theme-bg) 100%);
+    }
 
     &.print {
-        background: @theme-bg;
-    }
-    
-    @media (min-width: @screen-tablet) {
-        background: linear-gradient(90deg, @theme-secondary-bg 0%, @theme-secondary-bg 50%, @theme-bg 50%, @theme-bg 100%);
+        font-size: 14px;
+        --theme-bg: @theme-bg;
+        --theme-secondary-bg: @theme-bg;
+        --theme-font-color: @theme-font-color;
+        --theme-border-color: @theme-border-color;
+        --link-color: @link-color;
+        --icon-color: @icon-color;
+        --theme-label-bg: @theme-label-bg;
     }
 
+
     @media print {
-        background: @theme-bg;
+        font-size: 12px;
+        --theme-bg: @theme-bg;
+        --theme-secondary-bg: @theme-bg;
+        --theme-font-color: @theme-font-color;
+        --theme-border-color: @theme-border-color;
+        --link-color: @link-color;
+        --icon-color: @icon-color;
+        --theme-label-bg: @theme-label-bg;
     }
 }
 
@@ -30,8 +65,8 @@ svg {
 }
 
 path {
-  fill: black !important;
-  stroke: black !important;
+  fill: var(--icon-color) !important;
+  stroke: var(--icon-color) !important;
 }
 
 .section {
@@ -43,7 +78,7 @@ path {
 
     &__title {
         padding-bottom: .5em;
-        border-bottom: 2px solid black;
+        border-bottom: 2px solid var(--theme-border-color);
     }
 }
 
@@ -81,7 +116,7 @@ ul {
 a {
     text-decoration: none;
     color: inherit;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--theme-border-color);
 
     &:visited {
         color: inherit;
