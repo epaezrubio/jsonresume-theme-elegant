@@ -37,7 +37,7 @@ function limitTo(list, limit = Infinity) {
     return list.slice(0, limit)
 }
 
-function mapItems(items, meta) {
+function mapItems(items, blocks, meta) {
     if (!meta) {
         return items
     }
@@ -47,29 +47,29 @@ function mapItems(items, meta) {
     }
 
     for (let key in meta) {
-        let order = _.get(meta, `${key}.orderBy`, null)
-        let limit = _.get(meta, `${key}.limitTo`, Infinity)
+        _.set(mappedItems, key, meta[key])
+    }
 
-        let keyList = _.get(mappedItems, key)
-        let keyMeta = _.get(meta, `${key}._meta`, null)
+    for (let block of blocks) {
+        let order = _.get(mappedItems, `${block}._meta.orderBy`, null)
+        let limit = _.get(mappedItems, `${block}._meta.limitTo`, Infinity)
+
+        let keyList = _.get(mappedItems, block, [])
 
         let mappedList = limitTo(orderBy(keyList, order), limit)
 
-        if (keyMeta) {
-            mappedList = mappedList.map((item) => {
-                return mapItems(item, keyMeta)
-            })
-        }
-
-        _.set(mappedItems, key, mappedList)
+        _.set(mappedItems, block, mappedList)
+        _.set(mappedItems, `${block}._meta`, keyList._meta)
     }
+
 
     return mappedItems
 }
 
 function html(resume, static) {
+    const backgroundBlocks = ["work", "volunteer", "projects", "publications", "awards", "education", "references", "interests"]
     const addressAttrs = ['address', 'city', 'region', 'countryCode', 'postalCode']
-    let mappedResume = mapItems(resume, resume._meta)
+    let mappedResume = mapItems(resume, backgroundBlocks, resume._meta)
     let addressValues = _.map(addressAttrs, key => mappedResume.basics.location[key])
     let css = fs.readFileSync(__dirname + '/assets/css/theme.css', 'utf-8')
 
@@ -144,9 +144,11 @@ function html(resume, static) {
         }
     })
 
-    let backgroundOrder = Object.keys(mappedResume._meta || {}).reduce((acc, cur) => {
-        if (typeof mappedResume._meta[cur].position !== undefined) {
-            acc[cur] = mappedResume._meta[cur].position
+    let backgroundOrder = backgroundBlocks.reduce((acc, cur) => {
+        let position = _.get(mappedResume, `${cur}._meta.position`)
+
+        if (position !== null) {
+            acc[cur] = position
         }
 
         return acc
