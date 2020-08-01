@@ -352,6 +352,14 @@ body.print .skill__badge {
 body.print .skill__badge--filled {
   display: inline-block;
 }
+.hobbies .section__content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.hobbies .info__row {
+  flex-basis: 200px;
+}
 .profile {
   border: 3px solid var(--theme-border-color);
   background: var(--theme-bg);
@@ -396,6 +404,7 @@ body.print .profile h2 {
   font-size: 1.1em;
 }
 .profile__data {
+  line-height: 2em;
   text-align: center;
   padding: 0 0.75em;
 }

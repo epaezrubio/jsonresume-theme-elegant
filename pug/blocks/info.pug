@@ -37,5 +37,8 @@ mixin profile_card_detail(icon, info, itemprop, icon_title)
           .skill__level= level
           .skill__name= skill.join(', ')
 
-
-
+  unless _.isEmpty(resume.basics.hobbies)
+    +section('Interests & Hobbies')(class=metaClasses(resume.basics.hobbies)).hobbies
+      each hobby in resume.basics.hobbies
+        +profile_card_detail(hobby.icon, 'lg', hobby.label)
+          =hobby.title
