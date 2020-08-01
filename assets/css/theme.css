@@ -39,32 +39,21 @@ Single-colored icons can be modified like so:
   width: 0.71386719em;
 }
 .flex-item-list,
-.info,
 .skills > .section__content {
-  margin-left: -0.75em;
-  margin-right: -0.75em;
-}
-.flex-item,
-.info .section,
-.skill {
-  padding-left: 0.75em;
-  padding-right: 0.75em;
+  gap: 0.75em;
 }
 @media screen {
   .print-only {
-    display: none;
+    display: none !important;
   }
-}
-body:not(.print) .print-only {
-  display: none;
 }
 @media print {
   .screen-only {
-    display: none;
+    display: none !important;
   }
 }
 body.print .screen-only {
-  display: none;
+  display: none !important;
 }
 :root {
   --theme-bg: #fefefe;
@@ -96,6 +85,7 @@ body {
 }
 body {
   font-family: 'Lato';
+  line-height: 1.4em;
   color: var(--theme-font-color);
   background: var(--theme-bg);
 }
@@ -143,6 +133,9 @@ path {
   padding-bottom: 0.5em;
   border-bottom: 2px solid var(--theme-border-color);
 }
+.section__content {
+  position: relative;
+}
 h1 {
   letter-spacing: 0.25em;
 }
@@ -187,9 +180,21 @@ a:visited {
   display: inline-block;
   margin-right: 10px;
 }
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+  a,
+  a * {
+    color: var(--theme-font-color) !important;
+    border-bottom: 0;
+  }
+}
+.pagebreak {
+  page-break-after: always;
+}
 .container {
   position: relative;
-  overflow-x: hidden;
   margin: 0 auto;
   max-width: 1200px;
 }
@@ -212,6 +217,15 @@ body.print .container {
 }
 .grid__item {
   padding: 1.5em 3em 1.5em;
+  gap: 0.75em;
+}
+@media print {
+  .grid__item + .grid__item {
+    padding-top: 0;
+  }
+}
+body.print .grid__item + .grid__item {
+  padding-top: 0;
 }
 @media (min-width: 1024px) {
   .grid__item {
@@ -242,11 +256,11 @@ body.print .grid__item {
 }
 @media print {
   .header {
-    height: 10rem;
+    height: 10.5rem;
   }
 }
 body.print .header {
-  height: 10rem;
+  height: 10.5rem;
 }
 .info {
   display: flex;
@@ -390,7 +404,7 @@ body.print .profile h2 {
 }
 .event {
   margin-bottom: 1.75em;
-  overflow: visible;
+  break-inside: avoid;
 }
 .event:last-of-type {
   margin-bottom: 0;

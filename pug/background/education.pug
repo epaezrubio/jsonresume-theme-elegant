@@ -1,7 +1,7 @@
 unless _.isEmpty(resume.education)
   +section('Education').education
     each education_info in resume.education
-      .event
+      .event(class=metaClasses(education_info))
         .event__header
           .event__title
             +join([education_info.area, education_info.studyType])

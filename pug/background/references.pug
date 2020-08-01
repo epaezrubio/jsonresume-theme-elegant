@@ -1,7 +1,7 @@
 unless _.isEmpty(resume.references)
   +section('References').references
     each reference in resume.references
-      .event
+      .event(class=metaClasses(reference))
         .event__header
           .event__title
             if reference.website

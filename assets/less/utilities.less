@@ -1,11 +1,8 @@
 .flex-item-list {
-    margin-left: -0.75em;
-    margin-right: -0.75em;
+    gap: 0.75em;
 }
 
 .flex-item {
-    padding-left: 0.75em;
-    padding-right: 0.75em;
 }
 
 .media-print(@rules) {
@@ -19,7 +16,7 @@
 }
 
 .media-print-tablet(@rules) {
-    @media print and  (min-width: @screen-tablet) {
+    @media print and (min-width: @screen-tablet) {
         @rules();
     }
 
@@ -39,9 +36,13 @@
 }
 
 .print-only {
-    .media-screen({display: none})
+    @media screen {
+        display: none !important;
+    }
 }
 
 .screen-only {
-    .media-print({display: none})
+    .media-print({
+        display: none !important
+    })
 }

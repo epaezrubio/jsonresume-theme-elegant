@@ -1,7 +1,7 @@
 unless _.isEmpty(resume.awards)
   +section('Awards').awards
     each award in resume.awards
-      .event
+      .event(class=metaClasses(award))
         .event__header
           .event__title
             |#{award.title}

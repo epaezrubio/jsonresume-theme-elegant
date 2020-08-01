@@ -1,7 +1,7 @@
 unless _.isEmpty(resume.volunteer)
   +section('Volunteer work').volunteer-work
     each volunteer in resume.volunteer
-      .event
+      .event(class=metaClasses(volunteer))
         .event__header
           .event__title
             |#{volunteer.position}

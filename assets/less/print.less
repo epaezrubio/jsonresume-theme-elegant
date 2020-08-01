@@ -1,17 +1,14 @@
 @media print {
-    * {
-      page-break-inside: avoid;
-    }
-
     a[href]:after {
       content: none !important;
     }
 
     a, a * {
-      color: @link-color !important;
+      color: var(--theme-font-color) !important;
+      border-bottom: 0;
     }
+}
 
-    .pagebreak {
-        page-break-before: always;
-    }
+.pagebreak {
+    page-break-after: always;
 }

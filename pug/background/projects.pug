@@ -1,7 +1,7 @@
 unless _.isEmpty(resume.projects)
   +section('Pet projects').projects
     each project in resume.projects
-      .event
+      .event(class=metaClasses(project))
         .event__header
           .event__title
             |#{project.name}

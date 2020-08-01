@@ -1,7 +1,7 @@
 unless _.isEmpty(resume.work)
   +section('Work Experience').work-experience
     each experience in resume.work
-      .event
+      .event(class=metaClasses(experience))
         .event__header
           .event__title
             |#{experience.position}

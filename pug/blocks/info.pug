@@ -1,5 +1,5 @@
 mixin profile_card_detail(icon, info, itemprop, icon_title)
-  .info__row
+  .info__row(class!=attributes.class)
     +icon(icon, 'lg', icon_title)
     if block
       block
@@ -25,8 +25,10 @@ mixin profile_card_detail(icon, info, itemprop, icon_title)
   unless _.isEmpty(resume.basics.profiles)
     +section('Links').social-links
       each profile in resume.basics.profiles
-        +profile_card_detail(profile.label, 'lg', profile.label)
-          a.social-link(title=resume.basics.name + " on " + profile.network, href=profile.url, target="_blank")=profile.username
+        +profile_card_detail(profile.label, 'lg', profile.label)(class=metaClasses(profile))
+          a.social-link(title=resume.basics.name + " on " + profile.network, href=profile.url, target="_blank")
+            span.screen-only=profile.username
+            span.print-only=profile.url
 
   unless _.isEmpty(resume.skills)
     +section('Skills').skills
