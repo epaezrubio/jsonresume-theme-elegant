@@ -176,7 +176,7 @@ body.print .container {
   }
 }
 .grid__item {
-  padding: 1.5em 3em 1.5em;
+  padding: 1.5em;
   gap: 0.75em;
 }
 @media print {
