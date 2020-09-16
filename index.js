@@ -186,7 +186,6 @@ async function pdf(resume) {
 }
 
 module.exports = {
-    render: html,
     html: html,
     pdf: pdf
 }

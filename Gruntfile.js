@@ -1,5 +1,4 @@
 module.exports = function(grunt) {
-    // Project Configuration
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         less: {
@@ -23,10 +22,10 @@ module.exports = function(grunt) {
         },
         exec: {
             run_server: {
-                cmd: "node serve.js"
+                cmd: "node scripts/serve.js"
             },
             build_index: {
-                cmd: "node render.js"
+                cmd: "node scripts/render.js"
             }
         },
         copy: {
@@ -74,19 +73,10 @@ module.exports = function(grunt) {
     // Default tasks
     grunt.registerTask('default', ['exec']);
     grunt.registerTask('build', [
-        /* Uncomment this item once you've created your own resume.json file
-           in the project root.  This will use your own data to build your site.
-         */
-        // 'copy:resumejson',
         'clean',
         'copy:build',
         'less',
-        'exec:build_index' //,
-        /* Uncomment this item (and the comma above) if you add a favicon.ico
-           in the project root. You'll also need to uncomment the <link...> tag
-           at the top of resume.template.
-         */
-        // 'copy:favicon'
+        'exec:build_index'
     ]);
     grunt.registerTask('serve', [
         'build',

@@ -6,10 +6,6 @@
   "scripts": {
     "test": "jshint serve.js | jshint render.js | node render | node render node_modules/resume-schema/resume.json"
   },
-  "bin": {
-    "eprresume": "render.js",
-    "eprelegant": "render.js"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/epaezrubio/jsonresume-theme-elegant"

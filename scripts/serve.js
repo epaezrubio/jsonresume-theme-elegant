@@ -1,13 +1,5 @@
-//
-// This script will run a local development server. This is useful when
-// developing the theme.
-//
-// Usage:
-// `node serve`
-//
-
 const http = require('http')
-const theme = require('./index.js')
+const theme = require('../index.js')
 
 const port = process.env.PORT || 8889
 const resumePath = process.env.RESUME_PATH || 'resume-schema/resume.json'
