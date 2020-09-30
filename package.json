@@ -24,7 +24,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "jsonresume-themeutils": "^1.4.3",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "markdown-it": "^8.4.2",
     "markdown-it-abbr": "^1.0.3",
     "minimist": "^1.2.3",
