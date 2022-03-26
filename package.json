@@ -27,7 +27,7 @@
     "lodash": "^4.17.19",
     "markdown-it": "^8.4.2",
     "markdown-it-abbr": "^1.0.3",
-    "minimist": "^1.2.3",
+    "minimist": "^1.2.6",
     "moment": "^2.8.1",
     "pdf-parse": "^1.1.1",
     "pug": "^2.0.0",
